@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid with Popup Menu</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; background-color: #f0f0f0; }
+    h1 { text-align: center; color: #333; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .square {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      height: 200px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+      overflow: hidden; /* Ensure content stays within rounded corners */
+    }
+    .square:hover {
+      transform: translateY(-5px);
+    }
+    .square-content {
+      background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+      color: white;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box; /* Include padding in width */
+      font-weight: bold;
+      text-align: center;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000; /* Ensure popup is on top */
+    }
+    .popup.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .popup-content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 700px; /* Slightly larger max-width */
+      width: 90%; /* Responsive width */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      transform: scale(0.9);
+      transition: transform 0.3s ease-in-out;
+    }
+    .popup.active .popup-content {
+      transform: scale(1);
+    }
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .popup img {
+      max-width: 100%;
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .popup p {
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .close {
+      cursor: pointer;
+      margin-top: 20px;
+      color: #007bff; /* Blue color for link */
+      text-decoration: underline;
+      font-weight: bold;
+      transition: color 0.2s ease;
+    }
+    .close:hover {
+      color: #0056b3; /* Darker blue on hover */
+    }
+  </style>
+</head>
+<body>
+  <h1>My Grid Page</h1>
+  <div class="grid" id="grid-container"></div>
+  <div class="popup" id="popup">
+    <div class="popup-content" id="popup-content"></div>
+  </div>
+  <script>
+    const items = [
+      { name: "Item 1", image: "https://via.placeholder.com/400x300?text=Item+1", description: "This is a detailed description for Item 1. It explains various features and aspects of this particular item, providing more context to the user." },
+      { name: "Item 2", image: "https://via.placeholder.com/400x300?text=Item+2", description: "This is the description for Item 2. It contains information relevant to its purpose and characteristics. Users can learn more about it here." },
+      { name: "Item 3", image: "https://via.placeholder.com/400x300?text=Item+3", description: "This is the description for Item 3, highlighting its unique selling points and benefits. Discover what makes this item special." },
+      { name: "Item 4", image: "https://via.placeholder.com/400x300?text=Item+4", description: "This is the description for Item 4, offering insights into its functionality and design. A comprehensive overview for interested users." },
+      { name: "Item 5", image: "https://via.placeholder.com/400x300?text=Item+5", description: "This is the description for Item 5, detailing its specifications and applications. Find out how this item can meet your needs." },
+      { name: "Item 6", image: "https://via.placeholder.com/400x300?text=Item+6", description: "This is the description for Item 6, providing a summary of its key attributes and advantages. Explore the possibilities with this item." }
+    ];
+
+    const grid = document.getElementById('grid-container');
+    const popup = document.getElementById('popup');
+    const popupContent = document.getElementById('popup-content');
+
+    items.forEach(item => {
+      const square = document.createElement('div');
+      square.className = 'square';
+      square.style.backgroundImage = `url('${item.image}')`;
+
+      const content = document.createElement('div');
+      content.className = 'square-content';
+      content.textContent = item.name;
+
+      square.appendChild(content);
+
+      square.addEventListener('click', () => {
+        popupContent.innerHTML = `
+          <h2>${item.name}</h2>
+          <img src="${item.image}" alt="${item.name} image" />
+          <p>${item.description}</p>
+          <div class='close'>Close</div>
+        `;
+        popup.classList.add('active');
+
+        // Add event listener to the dynamically created close button
+        popupContent.querySelector('.close').addEventListener('click', () => {
+          popup.classList.remove('active');
+        });
+      });
+
+      grid.appendChild(square);
+    });
+
+    // Close popup when clicking outside the popup-content
+    popup.addEventListener('click', (event) => {
+      if (event.target === popup) {
+        popup.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
+```
