@@ -109,7 +109,7 @@
   </div>
   <script>
     const items = [
-      { name: "Item 1", image: "https://via.placeholder.com/400x300?text=Item+1", description: "This is a detailed description for Item 1. It explains various features and aspects of this particular item, providing more context to the user." },
+      { name: "Feed The Needy in Durham", image: "images/organizationlogo/feedtheneedy.jpg", description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region by providing nutritious food and support to individuals and families in need. Through community partnerships, food drives, and volunteer efforts, they strive to ensure that everyone has access to healthy meals and resources to enhance their well-being." },
       { name: "Item 2", image: "https://via.placeholder.com/400x300?text=Item+2", description: "This is the description for Item 2. It contains information relevant to its purpose and characteristics. Users can learn more about it here." },
       { name: "Item 3", image: "https://via.placeholder.com/400x300?text=Item+3", description: "This is the description for Item 3, highlighting its unique selling points and benefits. Discover what makes this item special." },
       { name: "Item 4", image: "https://via.placeholder.com/400x300?text=Item+4", description: "This is the description for Item 4, offering insights into its functionality and design. A comprehensive overview for interested users." },
@@ -135,7 +135,7 @@
       square.addEventListener('click', () => {
         popupContent.innerHTML = `
           <h2>${item.name}</h2>
-          <img src="${item.image}" alt="${item.name} image" />
+          <img src="{item.image}" alt="${item.name} image" />
           <p>${item.description}</p>
           <div class='close'>Close</div>
         `;
