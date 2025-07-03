@@ -114,16 +114,23 @@
 								<div class="inner">
 									<h2 class="major">Vitae phasellus</h2>
 									<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-									<section class="features">
-										<ul class="actions">
+									<ul class="actions">
 											<li><a href="opportunities.html" class="button">Browse All</a></li>
 										</ul>
+									<section class="features">
 										<article>
 											<img src="images/organizationlogo/feedtheneedy.jpg" alt="" class="image" />
 											<h3 class="major">Feed The Needy in Durham</h3>
 											<p>Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.</p>
 											<a href="#" class="special">Learn more</a>
-											
+											<div class ="popup">
+												<div class ="popup-content">
+													<h2>Learn More</h2>
+													<img src="images/organizationlogo/feedtheneedy.jpg" alt="Popup Image"
+														<p>This is the content of the popup. you can add any info here</p>
+													<div class="close">Close</div>
+												</div>
+											</div>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
@@ -159,6 +166,21 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+	<script>
+    // Get the popup and close button
+    const popup = document.querySelector('.popup');
+    const closeButton = document.querySelector('.popup .close');
+
+    // Add click event listener to the "Learn more" link
+    document.querySelector('.special').addEventListener('click', () => {
+      popup.classList.add('active');
+    });
+
+    // Add click event listener to the close button
+    closeButton.addEventListener('click', () => {
+      popup.classList.remove('active');
+    });
+  </script>
 
 </body>
 
