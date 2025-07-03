@@ -3446,6 +3446,11 @@ body.is-menu-visible #menu .inner {
 #banner .inner {
 	margin: 0 auto;
 	width: 55em;
+	display: flex;
+	align-items: center;
+	gap: 1em; /* space between logo and text */
+	flex-wrap: wrap; /* optional: helps on smaller screens */
+	justify-content: center; /* optional: center everything */
 }
 
 #banner .logo {
@@ -3497,6 +3502,7 @@ body.is-menu-visible #menu .inner {
 	font-size: 2.25em;
 	margin-bottom: 0.8em;
 	padding-bottom: 0.4em;
+	margin-top: 10px;
 }
 
 #banner p {
