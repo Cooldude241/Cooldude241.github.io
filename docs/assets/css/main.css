@@ -3273,7 +3273,7 @@ button:disabled,
 #header {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: first baseline;
 	padding: 1em 2em;
 }
 
