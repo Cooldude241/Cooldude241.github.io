@@ -1,5 +1,5 @@
 /*
-	Solid State by HTML5 UP - Modified for Consistent Top Navigation
+	Solid State by HTML5 UP - Modified for Consistent Top Navigation with Sticky Header
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
@@ -25,15 +25,61 @@
 		}, 100);
 	});
 
-	// Header functionality - works on all pages
-	if ($banner.length > 0 && $header.hasClass('alt')) {
+	// Make header sticky and always visible
+	function makeHeaderSticky() {
+		if ($header.length > 0) {
+			// Add sticky class to header
+			$header.addClass('is-sticky');
+			
+			// Add CSS for sticky behavior - initially transparent at top
+			$header.css({
+				'position': 'fixed',
+				'top': '0',
+				'left': '0',
+				'right': '0',
+				'z-index': '10000',
+				'background-color': 'transparent', // Start transparent
+				'transition': 'all 0.3s ease' // Smooth transitions
+			});
+
+			// Add padding to body to prevent content from hiding behind header
+			var headerHeight = $header.outerHeight();
+			$body.css('padding-top', headerHeight + 'px');
+			
+			// Update padding when window resizes
+			$window.on('resize', function() {
+				var newHeaderHeight = $header.outerHeight();
+				$body.css('padding-top', newHeaderHeight + 'px');
+			});
+		}
+	}
+
+	// Handle header background based on scroll position
+	function handleHeaderScroll() {
+		if ($header.hasClass('is-sticky')) {
+			var scrollTop = $window.scrollTop();
+			
+			if (scrollTop > 50) { // Show background after scrolling 50px
+				$header.css({
+					'background-color': '#62687f', // Dark blue background
+					'box-shadow': '0 2px 10px rgba(0, 0, 0, 0.2)' // Add shadow
+				});
+			} else { // Hide background when at top
+				$header.css({
+					'background-color': 'transparent',
+					'box-shadow': 'none'
+				});
+			}
+		}
+	}
+
+	// Modified header functionality - add scroll listener for background changes
+	if ($banner.length > 0) {
 		$window.on('resize', function () { $window.trigger('scroll'); });
-		$banner.scrollex({
-			bottom: $header.outerHeight(),
-			terminate: function () { $header.removeClass('alt'); },
-			enter: function () { $header.addClass('alt'); },
-			leave: function () { $header.removeClass('alt'); }
-		});
+		$window.on('scroll', handleHeaderScroll);
+	} else {
+		// If no banner, still handle scroll effects
+		$window.on('scroll', handleHeaderScroll);
 	}
 
 	// Ensure header has consistent structure on all pages
@@ -98,6 +144,9 @@
 	// Run the header consistency check
 	ensureConsistentHeader();
 
+	// Make header sticky after ensuring it exists
+	makeHeaderSticky();
+
 	// Mobile menu functionality
 	var $mobileMenu = $('#mobile-menu');
 	var $mobileToggle = $('#mobile-menu-toggle');
@@ -159,7 +208,7 @@
 	// Run active page highlighting
 	highlightActivePage();
 
-	// Smooth scrolling for anchor links (if any)
+	// Smooth scrolling for anchor links (if any) - account for sticky header
 	$body.on('click', 'a[href^="#"]', function (event) {
 		var target = $(this.getAttribute('href'));
 		if (target.length) {

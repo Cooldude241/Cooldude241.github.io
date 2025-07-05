@@ -3274,7 +3274,8 @@ button:disabled,
 	display: flex;
 	justify-content: space-between;
 	align-items: first baseline;
-	padding: 1em 2em;
+	padding: 0.5em 2em;
+	
 }
 
 /* Desktop Navigation */
