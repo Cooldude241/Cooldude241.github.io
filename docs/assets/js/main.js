@@ -126,14 +126,13 @@
 			var mobileMenuHTML = `
 				<nav id="mobile-menu">
 					<div class="inner">
-						<h2>Menu</h2>
 						<ul class="links">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
 							<li><a href="opportunities.html">Opportunities</a></li>
 							<li><a href="elements.html">Elements</a></li>
 						</ul>
-						<a href="#" class="close">Close</a>
+						<a href="#" class="close">X</a>
 					</div>
 				</nav>
 			`;

@@ -3321,7 +3321,7 @@ button:disabled,
 	color: #ffffff;
 	font-size: 1.2em;
 	text-decoration: none;
-	padding: 0.5em;
+	padding: 0.1em;
 }
 
 #mobile-menu-toggle:hover {
@@ -3332,6 +3332,11 @@ button:disabled,
 #mobile-menu {
 	display: none;
 }
+
+#mobile-menu h2{
+	display: none;
+}
+
 
 /* Responsive Design */
 @media screen and (max-width: 980px) {

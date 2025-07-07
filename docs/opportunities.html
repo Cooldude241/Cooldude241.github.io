@@ -7,6 +7,7 @@
   <style>
     body { font-family: sans-serif; margin: 20px; background-color: #f0f0f0; }
     h1 { text-align: center; color: #333; }
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* Changed to 3 columns */
@@ -108,52 +109,253 @@
     <div class="popup-content" id="popup-content"></div>
   </div>
   <script>
-    const items = [
-      { name: "Feed The Needy in Durham", image: "images/organizationlogo/feedtheneedy.jpg", description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region by providing nutritious food and support to individuals and families in need. Through community partnerships, food drives, and volunteer efforts, they strive to ensure that everyone has access to healthy meals and resources to enhance their well-being." },
-      { name: "Item 2", image: "https://via.placeholder.com/400x300?text=Item+2", description: "This is the description for Item 2. It contains information relevant to its purpose and characteristics. Users can learn more about it here." },
-      { name: "Item 3", image: "https://via.placeholder.com/400x300?text=Item+3", description: "This is the description for Item 3, highlighting its unique selling points and benefits. Discover what makes this item special." },
-      { name: "Item 4", image: "https://via.placeholder.com/400x300?text=Item+4", description: "This is the description for Item 4, offering insights into its functionality and design. A comprehensive overview for interested users." },
-      { name: "Item 5", image: "https://via.placeholder.com/400x300?text=Item+5", description: "This is the description for Item 5, detailing its specifications and applications. Find out how this item can meet your needs." },
-      { name: "Item 6", image: "https://via.placeholder.com/400x300?text=Item+6", description: "This is the description for Item 6, providing a summary of its key attributes and advantages. Explore the possibilities with this item." }
-    ];
+      // === ORIGINAL GRID FUNCTIONALITY ===
+      const items = [
+        { name: "Feed The Needy in Durham", image: "images/organizationlogo/feedtheneedy.jpg", description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region by providing nutritious food and support to individuals and families in need. Through community partnerships, food drives, and volunteer efforts, they strive to ensure that everyone has access to healthy meals and resources to enhance their well-being." },
+        { name: "Item 2", image: "https://via.placeholder.com/400x300?text=Item+2", description: "This is the description for Item 2. It contains information relevant to its purpose and characteristics. Users can learn more about it here." },
+        { name: "Item 3", image: "https://via.placeholder.com/400x300?text=Item+3", description: "This is the description for Item 3, highlighting its unique selling points and benefits. Discover what makes this item special." },
+        { name: "Item 4", image: "https://via.placeholder.com/400x300?text=Item+4", description: "This is the description for Item 4, offering insights into its functionality and design. A comprehensive overview for interested users." },
+        { name: "Item 5", image: "https://via.placeholder.com/400x300?text=Item+5", description: "This is the description for Item 5, detailing its specifications and applications. Find out how this item can meet your needs." },
+        { name: "Item 6", image: "https://via.placeholder.com/400x300?text=Item+6", description: "This is the description for Item 6, providing a summary of its key attributes and advantages. Explore the possibilities with this item." }
+      ];
 
-    const grid = document.getElementById('grid-container');
-    const popup = document.getElementById('popup');
-    const popupContent = document.getElementById('popup-content');
+      const grid = document.getElementById('grid-container');
+      const popup = document.getElementById('popup');
+      const popupContent = document.getElementById('popup-content');
 
-    items.forEach(item => {
-      const square = document.createElement('div');
-      square.className = 'square';
-      square.style.backgroundImage = `url('${item.image}')`;
+      items.forEach(item => {
+        const square = document.createElement('div');
+        square.className = 'square';
+        square.style.backgroundImage = `url('${item.image}')`;
 
-      const content = document.createElement('div');
-      content.className = 'square-content';
-      content.textContent = item.name;
+        const content = document.createElement('div');
+        content.className = 'square-content';
+        content.textContent = item.name;
 
-      square.appendChild(content);
+        square.appendChild(content);
 
-      square.addEventListener('click', () => {
-        popupContent.innerHTML = `
-          <h2>${item.name}</h2>
-          <img src="${item.image}" alt="${item.name} image" />
-          <p>${item.description}</p>
-          <div class='close'>Close</div>
-        `;
-        popup.classList.add('active');
+        square.addEventListener('click', () => {
+          popupContent.innerHTML = `
+            <h2>${item.name}</h2>
+            <img src="${item.image}" alt="${item.name} image" />
+            <p>${item.description}</p>
+            <div class='close'>Close</div>
+          `;
+          popup.classList.add('active');
 
-        popupContent.querySelector('.close').addEventListener('click', () => {
-          popup.classList.remove('active');
+          popupContent.querySelector('.close').addEventListener('click', () => {
+            popup.classList.remove('active');
+          });
         });
+
+        grid.appendChild(square);
       });
 
-      grid.appendChild(square);
-    });
+      popup.addEventListener('click', (event) => {
+        if (event.target === popup) {
+          popup.classList.remove('active');
+        }
+      });
 
-    popup.addEventListener('click', (event) => {
-      if (event.target === popup) {
-        popup.classList.remove('active');
-      }
-    });
+      // === STICKY HEADER FUNCTIONALITY ===
+      document.addEventListener('DOMContentLoaded', function() {
+          const header = document.getElementById('header');
+          const body = document.body;
+          const banner = document.getElementById('banner');
+
+          // Ensure header has consistent structure
+          function ensureConsistentHeader() {
+              const existingHeader = document.getElementById('header');
+
+              if (existingHeader) {
+                  let nav = existingHeader.querySelector('#nav');
+                  let mobileToggle = existingHeader.querySelector('#mobile-menu-toggle');
+
+                  // If the header doesn't have the new nav structure, add it
+                  if (!nav) {
+                      // Remove old menu link if it exists
+                      const oldMenuLink = existingHeader.querySelector('nav a[href="#menu"]');
+                      if (oldMenuLink && oldMenuLink.parentNode) {
+                          oldMenuLink.parentNode.remove();
+                      }
+
+                      // Add new navigation structure
+                      const navHTML = `
+                          <nav id="nav">
+                              <ul class="links">
+                                  <li><a href="index.html">Home</a></li>
+                                  <li><a href="aboutus.html">About Us</a></li>
+                                  <li><a href="opportunities.html">Opportunities</a></li>
+                                  <li><a href="elements.html">Elements</a></li>
+                              </ul>
+                          </nav>
+                      `;
+
+                      // Add mobile menu toggle
+                      const mobileToggleHTML = `
+                          <a href="#mobile-menu" id="mobile-menu-toggle">
+                              <span class="icon fa-bars"></span>
+                          </a>
+                      `;
+
+                      existingHeader.insertAdjacentHTML('beforeend', navHTML);
+                      existingHeader.insertAdjacentHTML('beforeend', mobileToggleHTML);
+                  }
+              }
+
+              // Ensure mobile menu exists with consistent structure
+              let mobileMenu = document.getElementById('mobile-menu');
+              if (!mobileMenu) {
+                  const mobileMenuHTML = `
+                      <nav id="mobile-menu">
+                          <div class="inner">
+                              <h2>Menu</h2>
+                              <ul class="links">
+                                  <li><a href="index.html">Home</a></li>
+                                  <li><a href="aboutus.html">About Us</a></li>
+                                  <li><a href="opportunities.html">Opportunities</a></li>
+                                  <li><a href="elements.html">Elements</a></li>
+                              </ul>
+                              <a href="#" class="close">Close</a>
+                          </div>
+                      </nav>
+                  `;
+                  body.insertAdjacentHTML('beforeend', mobileMenuHTML);
+                  mobileMenu = document.getElementById('mobile-menu');
+              }
+          }
+
+          // Make header sticky and always visible
+          function makeHeaderSticky() {
+              if (header) {
+                  // Add sticky class to header
+                  header.classList.add('is-sticky');
+                  
+                  // Add CSS for sticky behavior - preserve original dimensions
+                  Object.assign(header.style, {
+                      position: 'fixed',
+                      top: '0',
+                      left: '0',
+                      right: '0',
+                      zIndex: '10000',
+                      backgroundColor: 'transparent',
+                      transition: 'all 0.3s ease',
+                      width: '100%',
+                      boxSizing: 'border-box'
+                  });
+
+                  // Add margin to body to prevent content from hiding behind header
+                  const headerHeight = header.offsetHeight;
+                  body.style.marginTop = headerHeight + 'px';
+                  
+                  // Update margin when window resizes
+                  window.addEventListener('resize', function() {
+                      const newHeaderHeight = header.offsetHeight;
+                      body.style.marginTop = newHeaderHeight + 'px';
+                  });
+              }
+          }
+
+          // Handle header background based on scroll position
+          function handleHeaderScroll() {
+              if (header && header.classList.contains('is-sticky')) {
+                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                  
+                  if (scrollTop > 50) {
+                      Object.assign(header.style, {
+                          backgroundColor: '#1e3a8a',
+                          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                      });
+                  } else {
+                      Object.assign(header.style, {
+                          backgroundColor: 'transparent',
+                          boxShadow: 'none'
+                      });
+                  }
+              }
+          }
+
+          // Highlight active page in navigation
+          function highlightActivePage() {
+              const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+              
+              // Remove active class from all nav links
+              const navLinks = document.querySelectorAll('#nav a, #mobile-menu a');
+              navLinks.forEach(link => link.classList.remove('active'));
+
+              // Add active class to current page link
+              const activeLinks = document.querySelectorAll(`#nav a[href="${currentPage}"], #mobile-menu a[href="${currentPage}"]`);
+              activeLinks.forEach(link => link.classList.add('active'));
+          }
+
+          // Initialize header functionality
+          ensureConsistentHeader();
+          makeHeaderSticky();
+          highlightActivePage();
+
+          // Add scroll listener
+          window.addEventListener('scroll', handleHeaderScroll);
+
+          // Mobile menu functionality
+          document.addEventListener('click', function(event) {
+              const mobileMenu = document.getElementById('mobile-menu');
+              const mobileToggle = document.getElementById('mobile-menu-toggle');
+
+              // Mobile menu toggle
+              if (event.target.matches('#mobile-menu-toggle, #mobile-menu-toggle *')) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  mobileMenu.classList.toggle('is-visible');
+                  mobileToggle.classList.toggle('is-active');
+              }
+
+              // Close mobile menu when clicking close button
+              if (event.target.matches('#mobile-menu .close')) {
+                  event.preventDefault();
+                  mobileMenu.classList.remove('is-visible');
+                  mobileToggle.classList.remove('is-active');
+              }
+
+              // Close mobile menu when clicking on a menu link
+              if (event.target.matches('#mobile-menu a:not(.close)')) {
+                  mobileMenu.classList.remove('is-visible');
+                  mobileToggle.classList.remove('is-active');
+              }
+
+              // Close mobile menu when clicking outside
+              if (!mobileMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
+                  mobileMenu.classList.remove('is-visible');
+                  mobileToggle.classList.remove('is-active');
+              }
+          });
+
+          // Close mobile menu on escape key
+          document.addEventListener('keydown', function(event) {
+              if (event.keyCode === 27) {
+                  const mobileMenu = document.getElementById('mobile-menu');
+                  const mobileToggle = document.getElementById('mobile-menu-toggle');
+                  mobileMenu.classList.remove('is-visible');
+                  mobileToggle.classList.remove('is-active');
+              }
+          });
+
+          // Smooth scrolling for anchor links
+          document.addEventListener('click', function(event) {
+              if (event.target.matches('a[href^="#"]')) {
+                  const targetId = event.target.getAttribute('href');
+                  const target = document.querySelector(targetId);
+                  if (target) {
+                      event.preventDefault();
+                      const headerHeight = header ? header.offsetHeight : 0;
+                      const targetPosition = target.offsetTop - headerHeight;
+                      window.scrollTo({
+                          top: targetPosition,
+                          behavior: 'smooth'
+                      });
+                  }
+              }
+          });
+      });
   </script>
 </body>
 </html>
