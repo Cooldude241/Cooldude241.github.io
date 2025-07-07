@@ -19,7 +19,7 @@
 
 <body class="is-preload">
 	<div class="popup" id="popup">
-  <		div class="popup-content" id="popup-content"></div>
+  		<div class="popup-content" id="popup-content"></div>
 	</div>
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
@@ -149,38 +149,48 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script>
-		  // Declare your constants first
-		  const learnMoreButton = document.querySelector('.special');
+		  // Get references to the popup elements
 		  const popup = document.getElementById('popup');
 		  const popupContent = document.getElementById('popup-content');
-		  // Then, add the event listener for the learn more button
-		  learnMoreButton.addEventListener('click', () => {
-		    // Example of populating content - you'll need to dynamically get this from your article
-		    const organizationName = "Feed The Needy in Durham"; // Get this from your article
-		    const organizationImage = "images/organizationlogo/feedtheneedy.jpg"; // Get this from your article
-		    const organizationDescription = "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region. This is a more detailed description that would appear in the popup."; // Get more detailed description
-		    popupContent.innerHTML = `
-		      <h2>${organizationName}</h2>
-		      <img src="${organizationImage}" alt="${organizationName} logo" />
-		      <p>${organizationDescription}</p>
-		      <div class='close'>Close</div>
-		    `;
-		    popup.classList.add('active');
-		    // Add event listener for the close button inside the popup
-		    // This listener needs to be inside the click handler of the learnMoreButton
-		    // because the close button element is created dynamically each time the popup opens.
-		    popupContent.querySelector('.close').addEventListener('click', () => {
-		      popup.classList.remove('active');
+		  // Get ALL "Learn more" buttons
+		  const learnMoreButtons = document.querySelectorAll('.special');
+		  // Add event listener to each "Learn more" button
+		  learnMoreButtons.forEach(button => {
+		    button.addEventListener('click', (event) => {
+		      // Prevent the default link behavior (e.g., navigating to #)
+		      event.preventDefault();
+		      // Get the parent article element of the clicked button
+		      const article = event.target.closest('article');
+		      if (article) {
+			// Extract data from the article
+			const organizationName = article.querySelector('h3.major').textContent;
+			const organizationImage = article.querySelector('img').src;
+			const organizationDescription = article.querySelector('p').textContent;
+			// Populate the popup content dynamically
+			popupContent.innerHTML = `
+			  <h2>${organizationName}</h2>
+			  <img src="${organizationImage}" alt="${organizationName} logo" />
+			  <p>${organizationDescription}</p>
+			  <div class='close'>Close</div>
+			`;
+			// Show the popup
+			popup.classList.add('active');
+			// Add event listener for the close button inside the popup
+			// This listener is added each time the popup opens because the close button
+			// is dynamically created within popupContent.innerHTML
+			popupContent.querySelector('.close').addEventListener('click', () => {
+			  popup.classList.remove('active');
+			});
+		      }
 		    });
 		  });
-		  // Finally, add the event listener for clicking outside the popup to close it
+		  // Event listener to close the popup when clicking outside its content
 		  popup.addEventListener('click', (event) => {
 		    if (event.target === popup) {
 		      popup.classList.remove('active');
 		    }
 		  });
 		</script>
-
 </body>
 
 </html>
