@@ -1,362 +1,392 @@
-<!DOCTYPE html>
-<html lang="en">
+
+<!DOCTYPE HTML>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opportunities</title>
-  <style>
-    body { font-family: sans-serif; margin: 20px; background-color: #f0f0f0; }
-    h1 { text-align: center; color: #333; }
-    
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Changed to 3 columns */
-      gap: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .square {
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      height: 200px;
-      cursor: pointer;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease-in-out;
-      overflow: hidden;
-    }
-    .square:hover {
-      transform: translateY(-5px);
-    }
-    .square-content {
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 10px;
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      box-sizing: border-box;
-      font-weight: bold;
-      text-align: center;
-    }
-    .popup {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-    .popup.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-    .popup-content {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 700px;
-      width: 90%;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      transform: scale(0.9);
-      transition: transform 0.3s ease-in-out;
-    }
-    .popup.active .popup-content {
-      transform: scale(1);
-    }
-    .popup h2 {
-      margin-top: 0;
-      color: #333;
-    }
-    .popup img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .popup p {
-      color: #555;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-    .close {
-      cursor: pointer;
-      margin-top: 20px;
-      color: #007bff;
-      text-decoration: underline;
-      font-weight: bold;
-      transition: color 0.2s ease;
-    }
-    .close:hover {
-      color: #0056b3;
-    }
-  </style>
-</head>
-<body>
-  <h1>My Grid Page</h1>
-  <div class="grid" id="grid-container"></div>
-  <div class="popup" id="popup">
-    <div class="popup-content" id="popup-content"></div>
-  </div>
-  <script>
-      // === ORIGINAL GRID FUNCTIONALITY ===
-      const items = [
-        { name: "Feed The Needy in Durham", image: "images/organizationlogo/feedtheneedy.jpg", description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region by providing nutritious food and support to individuals and families in need. Through community partnerships, food drives, and volunteer efforts, they strive to ensure that everyone has access to healthy meals and resources to enhance their well-being." },
-        { name: "Item 2", image: "https://via.placeholder.com/400x300?text=Item+2", description: "This is the description for Item 2. It contains information relevant to its purpose and characteristics. Users can learn more about it here." },
-        { name: "Item 3", image: "https://via.placeholder.com/400x300?text=Item+3", description: "This is the description for Item 3, highlighting its unique selling points and benefits. Discover what makes this item special." },
-        { name: "Item 4", image: "https://via.placeholder.com/400x300?text=Item+4", description: "This is the description for Item 4, offering insights into its functionality and design. A comprehensive overview for interested users." },
-        { name: "Item 5", image: "https://via.placeholder.com/400x300?text=Item+5", description: "This is the description for Item 5, detailing its specifications and applications. Find out how this item can meet your needs." },
-        { name: "Item 6", image: "https://via.placeholder.com/400x300?text=Item+6", description: "This is the description for Item 6, providing a summary of its key attributes and advantages. Explore the possibilities with this item." }
-      ];
-
-      const grid = document.getElementById('grid-container');
-      const popup = document.getElementById('popup');
-      const popupContent = document.getElementById('popup-content');
-
-      items.forEach(item => {
-        const square = document.createElement('div');
-        square.className = 'square';
-        square.style.backgroundImage = `url('${item.image}')`;
-
-        const content = document.createElement('div');
-        content.className = 'square-content';
-        content.textContent = item.name;
-
-        square.appendChild(content);
-
-        square.addEventListener('click', () => {
-          popupContent.innerHTML = `
-            <h2>${item.name}</h2>
-            <img src="${item.image}" alt="${item.name} image" />
-            <p>${item.description}</p>
-            <div class='close'>Close</div>
-          `;
-          popup.classList.add('active');
-
-          popupContent.querySelector('.close').addEventListener('click', () => {
-            popup.classList.remove('active');
-          });
-        });
-
-        grid.appendChild(square);
-      });
-
-      popup.addEventListener('click', (event) => {
-        if (event.target === popup) {
-          popup.classList.remove('active');
+    <title>Opportunities</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
         }
-      });
 
-      // === STICKY HEADER FUNCTIONALITY ===
-      document.addEventListener('DOMContentLoaded', function() {
-          const header = document.getElementById('header');
-          const body = document.body;
-          const banner = document.getElementById('banner');
+        #page-wrapper {
+            overflow: hidden;
+        }
 
-          // Ensure header has consistent structure
-          function ensureConsistentHeader() {
-              const existingHeader = document.getElementById('header');
+        /* Header styles */
+        #header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
 
-              if (existingHeader) {
-                  let nav = existingHeader.querySelector('#nav');
-                  let mobileToggle = existingHeader.querySelector('#mobile-menu-toggle');
+        #header h1 {
+            margin: 0;
+            padding-left: 1rem;
+        }
 
-                  // If the header doesn't have the new nav structure, add it
-                  if (!nav) {
-                      // Remove old menu link if it exists
-                      const oldMenuLink = existingHeader.querySelector('nav a[href="#menu"]');
-                      if (oldMenuLink && oldMenuLink.parentNode) {
-                          oldMenuLink.parentNode.remove();
-                      }
+        #header h1 a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-                      // Add new navigation structure
-                      const navHTML = `
-                          <nav id="nav">
-                              <ul class="links">
-                                  <li><a href="index.html">Home</a></li>
-                                  <li><a href="aboutus.html">About Us</a></li>
-                                  <li><a href="opportunities.html">Opportunities</a></li>
-                                  <li><a href="elements.html">Elements</a></li>
-                              </ul>
-                          </nav>
-                      `;
+        #nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
 
-                      // Add mobile menu toggle
-                      const mobileToggleHTML = `
-                          <a href="#mobile-menu" id="mobile-menu-toggle">
-                              <span class="icon fa-bars"></span>
-                          </a>
-                      `;
+        #nav ul li {
+            padding: 0 1rem;
+        }
 
-                      existingHeader.insertAdjacentHTML('beforeend', navHTML);
-                      existingHeader.insertAdjacentHTML('beforeend', mobileToggleHTML);
-                  }
-              }
+        #nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
 
-              // Ensure mobile menu exists with consistent structure
-              let mobileMenu = document.getElementById('mobile-menu');
-              if (!mobileMenu) {
-                  const mobileMenuHTML = `
-                      <nav id="mobile-menu">
-                          <div class="inner">
-                              <h2>Menu</h2>
-                              <ul class="links">
-                                  <li><a href="index.html">Home</a></li>
-                                  <li><a href="aboutus.html">About Us</a></li>
-                                  <li><a href="opportunities.html">Opportunities</a></li>
-                                  <li><a href="elements.html">Elements</a></li>
-                              </ul>
-                              <a href="#" class="close">Close</a>
-                          </div>
-                      </nav>
-                  `;
-                  body.insertAdjacentHTML('beforeend', mobileMenuHTML);
-                  mobileMenu = document.getElementById('mobile-menu');
-              }
-          }
+        #mobile-menu-toggle {
+            display: none; /* Hidden on desktop */
+            padding-right: 1rem;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
 
-          // Make header sticky and always visible
-          function makeHeaderSticky() {
-              if (header) {
-                  // Add sticky class to header
-                  header.classList.add('is-sticky');
-                  
-                  // Add CSS for sticky behavior - preserve original dimensions
-                  Object.assign(header.style, {
-                      position: 'fixed',
-                      top: '0',
-                      left: '0',
-                      right: '0',
-                      zIndex: '10000',
-                      backgroundColor: 'transparent',
-                      transition: 'all 0.3s ease',
-                      width: '100%',
-                      boxSizing: 'border-box'
-                  });
+        /* Wrapper styles */
+        #wrapper {
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-                  // Add margin to body to prevent content from hiding behind header
-                  const headerHeight = header.offsetHeight;
-                  body.style.marginTop = headerHeight + 'px';
-                  
-                  // Update margin when window resizes
-                  window.addEventListener('resize', function() {
-                      const newHeaderHeight = header.offsetHeight;
-                      body.style.marginTop = newHeaderHeight + 'px';
-                  });
-              }
-          }
+        .inner {
+            padding: 2rem;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
 
-          // Handle header background based on scroll position
-          function handleHeaderScroll() {
-              if (header && header.classList.contains('is-sticky')) {
-                  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                  
-                  if (scrollTop > 50) {
-                      Object.assign(header.style, {
-                          backgroundColor: '#1e3a8a',
-                          boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
-                      });
-                  } else {
-                      Object.assign(header.style, {
-                          backgroundColor: 'transparent',
-                          boxShadow: 'none'
-                      });
-                  }
-              }
-          }
+        .major {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
 
-          // Highlight active page in navigation
-          function highlightActivePage() {
-              const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-              
-              // Remove active class from all nav links
-              const navLinks = document.querySelectorAll('#nav a, #mobile-menu a');
-              navLinks.forEach(link => link.classList.remove('active'));
+        /* Opportunities display */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-              // Add active class to current page link
-              const activeLinks = document.querySelectorAll(`#nav a[href="${currentPage}"], #mobile-menu a[href="${currentPage}"]`);
-              activeLinks.forEach(link => link.classList.add('active'));
-          }
+        .features article {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
 
-          // Initialize header functionality
-          ensureConsistentHeader();
-          makeHeaderSticky();
-          highlightActivePage();
+        .features article:hover {
+            transform: translateY(-5px);
+        }
 
-          // Add scroll listener
-          window.addEventListener('scroll', handleHeaderScroll);
+        .features article .image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
 
-          // Mobile menu functionality
-          document.addEventListener('click', function(event) {
-              const mobileMenu = document.getElementById('mobile-menu');
-              const mobileToggle = document.getElementById('mobile-menu-toggle');
+        .features article h3 {
+            padding: 1rem;
+            margin: 0;
+            color: #333;
+        }
 
-              // Mobile menu toggle
-              if (event.target.matches('#mobile-menu-toggle, #mobile-menu-toggle *')) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  mobileMenu.classList.toggle('is-visible');
-                  mobileToggle.classList.toggle('is-active');
-              }
+        .features article p {
+            padding: 0 1rem 1rem;
+            margin: 0;
+        }
 
-              // Close mobile menu when clicking close button
-              if (event.target.matches('#mobile-menu .close')) {
-                  event.preventDefault();
-                  mobileMenu.classList.remove('is-visible');
-                  mobileToggle.classList.remove('is-active');
-              }
+        .features article .special {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 1rem 1rem;
+            transition: background-color 0.2s;
+        }
 
-              // Close mobile menu when clicking on a menu link
-              if (event.target.matches('#mobile-menu a:not(.close)')) {
-                  mobileMenu.classList.remove('is-visible');
-                  mobileToggle.classList.remove('is-active');
-              }
+        .features article .special:hover {
+            background-color: #0056b3;
+        }
 
-              // Close mobile menu when clicking outside
-              if (!mobileMenu.contains(event.target) && !mobileToggle.contains(event.target)) {
-                  mobileMenu.classList.remove('is-visible');
-                  mobileToggle.classList.remove('is-active');
-              }
-          });
+        /* Popup styles */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
 
-          // Close mobile menu on escape key
-          document.addEventListener('keydown', function(event) {
-              if (event.keyCode === 27) {
-                  const mobileMenu = document.getElementById('mobile-menu');
-                  const mobileToggle = document.getElementById('mobile-menu-toggle');
-                  mobileMenu.classList.remove('is-visible');
-                  mobileToggle.classList.remove('is-active');
-              }
-          });
+        .popup.active {
+            display: flex;
+        }
 
-          // Smooth scrolling for anchor links
-          document.addEventListener('click', function(event) {
-              if (event.target.matches('a[href^="#"]')) {
-                  const targetId = event.target.getAttribute('href');
-                  const target = document.querySelector(targetId);
-                  if (target) {
-                      event.preventDefault();
-                      const headerHeight = header ? header.offsetHeight : 0;
-                      const targetPosition = target.offsetTop - headerHeight;
-                      window.scrollTo({
-                          top: targetPosition,
-                          behavior: 'smooth'
-                      });
-                  }
-              }
-          });
-      });
-  </script>
+        .popup-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.3s;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+        }
+
+        .popup-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        .popup-content .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup-content .close:hover,
+        .popup-content .close:focus {
+            color: #000;
+            text-decoration: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            #nav {
+                display: none; /* Hide desktop nav */
+            }
+
+            #header {
+                flex-direction: row-reverse; /* Move toggle to right */
+                justify-content: space-between;
+            }
+
+            #header h1 {
+                padding-left: 0;
+                text-align: center;
+                flex-grow: 1; /* Allow title to take space */
+            }
+
+            #mobile-menu-toggle {
+                display: block; /* Show mobile toggle */
+            }
+
+            /* Mobile menu overlay */
+            #nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                z-index: 999;
+            }
+
+            #nav.active ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            #nav.active ul li {
+                padding: 1rem 0;
+                border-bottom: 1px solid #555;
+            }
+
+            #nav.active ul li:last-child {
+                border-bottom: none;
+            }
+
+            .features {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+
+            .inner {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="is-preload">
+    <div class="popup" id="popup">
+        <div class="popup-content" id="popup-content"></div>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <h1><a href="index.html">CauseCircuit</a></h1>
+            <nav id="nav">
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="opportunities.html">Opportunities</a></li>
+                    <li><a href="elements.html">Elements</a></li>
+                </ul>
+            </nav>
+            <a href="#mobile-menu" id="mobile-menu-toggle">
+                <span class="icon">&#9776;</span> <!-- Hamburger icon -->
+            </a>
+        </header>
+
+        <!-- Wrapper -->
+        <section id="wrapper">
+            <div class="inner">
+                <h2 class="major">Volunteer Opportunities</h2>
+                <div id="articles-container" class="features">
+                    <!-- Articles will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Dummy data for opportunities
+        const opportunities = [
+            {
+                name: "Feed The Needy in Durham",
+                description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
+                detailedDescription: "Feed the Need in Durham is committed to providing fresh, nutritious food to those experiencing food insecurity. They partner with local farms, grocery stores, and community organizations to collect and distribute food. Volunteers are essential for sorting donations, packing hampers, and assisting with distribution events.",
+                imagePath: "https://placehold.co/600x400/FFDDC1/EAEAEA?text=FeedTheNeedy"
+            },
+            {
+                name: "Durham Children's Aid Foundation",
+                description: "The Durham Children's Aid Foundation supports children, youth, and families in need within the Durham Region.",
+                detailedDescription: "The Durham Children's Aid Foundation offers various programs and services, including bursaries for post-secondary education, recreational activities for children, and emergency assistance for families. Volunteers can assist with fundraising events, tutoring, or mentoring programs.",
+                imagePath: "https://placehold.co/600x400/C1FFDD/EAEAEA?text=Children's+Aid"
+            },
+            {
+                name: "Environmental Cleanup Initiative",
+                description: "Join our local initiative to clean up parks and natural areas in Durham.",
+                detailedDescription: "This initiative focuses on preserving the natural beauty of Durham by organizing regular cleanup events in parks, conservation areas, and along riverbanks. Volunteers help collect litter, remove invasive species, and participate in tree planting activities. It's a great way to contribute to environmental sustainability.",
+                imagePath: "https://placehold.co/600x400/DDC1FF/EAEAEA?text=Cleanup"
+            },
+            {
+                name: "Community Food Bank Volunteer",
+                description: "Volunteer at the local community food bank to help distribute food to families in need.",
+                detailedDescription: "The community food bank provides essential food supplies to individuals and families facing hardship. Volunteers are needed to help sort and organize donations, pack food hampers, and assist with client registration and distribution. This role is crucial in ensuring that everyone has access to nutritious food.",
+                imagePath: "https://placehold.co/600x400/FFC1DD/EAEAEA?text=Food+Bank"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const articlesContainer = document.getElementById('articles-container');
+            const popup = document.getElementById('popup');
+            const popupContent = document.getElementById('popup-content');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const nav = document.getElementById('nav');
+
+            // Populate opportunities
+            opportunities.forEach(opportunity => {
+                const article = document.createElement('article');
+                article.innerHTML = `
+                    <img src="${opportunity.imagePath}" alt="${opportunity.name}" class="image" />
+                    <h3 class="major">${opportunity.name}</h3>
+                    <p>${opportunity.description}</p>
+                    <a href="#" class="special" data-opportunity-name="${opportunity.name}">Learn more</a>
+                `;
+                articlesContainer.appendChild(article);
+            });
+
+            // Popup functionality
+            articlesContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('special')) {
+                    event.preventDefault();
+                    const opportunityName = event.target.dataset.opportunityName;
+                    const opportunity = opportunities.find(o => o.name === opportunityName);
+
+                    if (opportunity) {
+                        popupContent.innerHTML = `
+                            <h2>${opportunity.name}</h2>
+                            <img src="${opportunity.imagePath}" alt="${opportunity.name} logo" />
+                            <p>${opportunity.detailedDescription}</p>
+                            <div class="close">&times;</div> <!-- Using times symbol for close button -->
+                        `;
+                        popup.classList.add('active');
+
+                        // Add event listener for the close button inside the popup
+                        popupContent.querySelector('.close').addEventListener('click', () => {
+                            popup.classList.remove('active');
+                        });
+                    }
+                }
+            });
+
+            // Close popup when clicking outside the content
+            popup.addEventListener('click', (event) => {
+                if (event.target === popup) {
+                    popup.classList.remove('active');
+                }
+            });
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+                nav.classList.toggle('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
 
