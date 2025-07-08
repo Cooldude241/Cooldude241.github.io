@@ -1,140 +1,213 @@
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>CauseCircuit</title>
-	<meta charset="utf-8" />
-	<link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-</head>
-<body class="is-preload">
-    <div class="popup" id="popup">
-        <div class="popup-content" id="popup-content"></div>
-    </div>
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <title>Opportunities</title>
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <style>
+            /* Custom styles for opportunities.html if needed, these will override main.css */
 
-    <!-- Page Wrapper -->
-    <div id="page-wrapper">
-
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1><a href="index.html">CauseCircuit</a></h1>
-            <nav id="nav">
-                <ul class="links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="opportunities.html">Opportunities</a></li>
-                    <li><a href="elements.html">Elements</a></li>
-                </ul>
-            </nav>
-            <a href="#mobile-menu" id="mobile-menu-toggle">
-                <span class="icon">&#9776;</span> <!-- Hamburger icon -->
-            </a>
-        </header>
-
-        <!-- Wrapper -->
-        <section id="wrapper">
-            <div class="inner">
-                <h2 class="major">Volunteer Opportunities</h2>
-                <div id="articles-container" class="features">
-                    <!-- Articles will be dynamically loaded here -->
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Scripts -->
-    <script>
-        // Dummy data for opportunities
-        const opportunities = [
-            {
-                name: "Feed The Needy in Durham",
-                description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
-                detailedDescription: "Feed the Need in Durham is committed to providing fresh, nutritious food to those experiencing food insecurity. They partner with local farms, grocery stores, and community organizations to collect and distribute food. Volunteers are essential for sorting donations, packing hampers, and assisting with distribution events.",
-                imagePath: "https://placehold.co/600x400/FFDDC1/EAEAEA?text=FeedTheNeedy"
-            },
-            {
-                name: "Durham Children's Aid Foundation",
-                description: "The Durham Children's Aid Foundation supports children, youth, and families in need within the Durham Region.",
-                detailedDescription: "The Durham Children's Aid Foundation offers various programs and services, including bursaries for post-secondary education, recreational activities for children, and emergency assistance for families. Volunteers can assist with fundraising events, tutoring, or mentoring programs.",
-                imagePath: "https://placehold.co/600x400/C1FFDD/EAEAEA?text=Children's+Aid"
-            },
-            {
-                name: "Environmental Cleanup Initiative",
-                description: "Join our local initiative to clean up parks and natural areas in Durham.",
-                detailedDescription: "This initiative focuses on preserving the natural beauty of Durham by organizing regular cleanup events in parks, conservation areas, and along riverbanks. Volunteers help collect litter, remove invasive species, and participate in tree planting activities. It's a great way to contribute to environmental sustainability.",
-                imagePath: "https://placehold.co/600x400/DDC1FF/EAEAEA?text=Cleanup"
-            },
-            {
-                name: "Community Food Bank Volunteer",
-                description: "Volunteer at the local community food bank to help distribute food to families in need.",
-                detailedDescription: "The community food bank provides essential food supplies to individuals and families facing hardship. Volunteers are needed to help sort and organize donations, pack food hampers, and assist with client registration and distribution. This role is crucial in ensuring that everyone has access to nutritious food.",
-                imagePath: "https://placehold.co/600x400/FFC1DD/EAEAEA?text=Food+Bank"
+            /* Ensure the popup blends with the dark theme */
+            .popup-content {
+                background-color: #383838; /* Dark background for popup content, similar to #wrapper */
+                color: #aaaaaa; /* Light text color for popup, inherited from body in main.css */
+                border: 1px solid #555; /* Adjust border color to fit the dark theme */
             }
-        ];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const articlesContainer = document.getElementById('articles-container');
-            const popup = document.getElementById('popup');
-            const popupContent = document.getElementById('popup-content');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const nav = document.getElementById('nav');
+            .popup-content h2 {
+                color: #ffffff; /* White color for popup title */
+            }
 
-            // Populate opportunities
-            opportunities.forEach(opportunity => {
-                const article = document.createElement('article');
-                article.innerHTML = `
-                    <img src="${opportunity.imagePath}" alt="${opportunity.name}" class="image" />
-                    <h3 class="major">${opportunity.name}</h3>
-                    <p>${opportunity.description}</p>
-                    <a href="#" class="special" data-opportunity-name="${opportunity.name}">Learn more</a>
-                `;
-                articlesContainer.appendChild(article);
-            });
+            .popup-content .close {
+                color: #aaaaaa; /* Lighter color for close icon */
+            }
 
-            // Popup functionality
-            articlesContainer.addEventListener('click', (event) => {
-                if (event.target.classList.contains('special')) {
-                    event.preventDefault();
-                    const opportunityName = event.target.dataset.opportunityName;
-                    const opportunity = opportunities.find(o => o.name === opportunityName);
+            .popup-content .close:hover,
+            .popup-content .close:focus {
+                color: #ffffff; /* White on hover/focus */
+            }
 
-                    if (opportunity) {
-                        popupContent.innerHTML = `
-                            <h2>${opportunity.name}</h2>
-                            <img src="${opportunity.imagePath}" alt="${opportunity.name} logo" />
-                            <p>${opportunity.detailedDescription}</p>
-                            <div class="close">&times;</div> <!-- Using times symbol for close button -->
-                        `;
-                        popup.classList.add('active');
+            /* Adjusting article spacing within the grid if necessary */
+            /* main.css should handle the .features class, but if articles are too close,
+               you might need specific overrides here. */
+            #articles-container.features {
+                /* On desktop, force a grid with 3 columns */
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for desired article size */
+                gap: 2em; /* Spacing between articles, matching main.css's gtr values */
+            }
 
-                        // Add event listener for the close button inside the popup
-                        popupContent.querySelector('.close').addEventListener('click', () => {
-                            popup.classList.remove('active');
-                        });
+            /* Article specific styling to ensure it matches the dark theme */
+            #articles-container article {
+                background-color: #333333; /* Dark background for articles */
+                color: #ffffff; /* White text for articles */
+                border-radius: 5px; /* From main.css .image */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Example shadow */
+                padding-bottom: 1.5em; /* Add some padding at the bottom */
+            }
+
+            #articles-container article h3.major {
+                color: #ffffff; /* Ensure heading is white */
+                border-bottom: solid 2px rgba(255, 255, 255, 0.125); /* From main.css h1.major, etc. */
+                padding-bottom: 0.5em; /* Adjusted for articles */
+                margin-bottom: 1em; /* Spacing */
+            }
+
+            #articles-container article p {
+                color: #aaaaaa; /* Lighter text for description */
+                margin-bottom: 1.5em;
+            }
+
+            #articles-container article .image img {
+                border-radius: 5px 5px 0 0; /* Match article border radius */
+            }
+
+            /* Mobile responsiveness for articles */
+            @media screen and (max-width: 980px) {
+                #articles-container.features {
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust for tablets */
+                    gap: 1.5em;
+                }
+            }
+
+            @media screen and (max-width: 736px) {
+                #articles-container.features {
+                    grid-template-columns: 1fr; /* Single column on smaller mobiles */
+                    gap: 1em;
+                }
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+        <div class="popup" id="popup">
+            <div class="popup-content" id="popup-content"></div>
+        </div>
+
+        <!-- Page Wrapper -->
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <header id="header" class="alt">
+                <h1><a href="index.html">CauseCircuit</a></h1>
+                <nav id="nav">
+                    <ul class="links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="opportunities.html">Opportunities</a></li>
+                        <li><a href="elements.html">Elements</a></li>
+                    </ul>
+                </nav>
+                <a href="#mobile-menu" id="mobile-menu-toggle">
+                    <span class="icon fa-bars"></span>
+                </a>
+            </header>
+
+            <!-- Wrapper -->
+            <section id="wrapper" class="alt style1">
+                <div class="inner">
+                    <h2 class="major">Volunteer Opportunities</h2>
+                    <p>Browse through the available volunteer opportunities below.</p>
+                    <div id="articles-container" class="features">
+                        <!-- Articles will be dynamically loaded here by JavaScript -->
+                    </div>
+                     <ul class="actions special">
+                        <li><a href="#" class="button">Load More Opportunities</a></li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            const opportunities = [
+                {
+                    name: "Feed The Needy in Durham",
+                    description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
+                    detailedDescription: "Feed the Need in Durham is committed to providing fresh, nutritious food to those experiencing food insecurity. They partner with local farms, grocery stores, and community organizations to collect and distribute food. Volunteers are essential for sorting donations, packing hampers, and assisting with distribution events.",
+                    imagePath: "images/organizationlogo/feedtheneedy.jpg"
+                },
+                {
+                    name: "Durham Children's Aid Foundation",
+                    description: "The Durham Children's Aid Foundation supports children, youth, and families in need within the Durham Region.",
+                    detailedDescription: "The Durham Children's Aid Foundation offers various programs and services, including bursaries for post-secondary education, recreational activities for children, and emergency assistance for families. Volunteers can assist with fundraising events, tutoring, or mentoring programs.",
+                    imagePath: "images/pic05.jpg" // Placeholder image
+                },
+                {
+                    name: "Environmental Cleanup Initiative",
+                    description: "Join our local initiative to clean up parks and natural areas in Durham.",
+                    detailedDescription: "This initiative focuses on preserving the natural beauty of Durham by organizing regular cleanup events in parks, conservation areas, and along riverbanks. Volunteers help collect litter, remove invasive species, and participate in tree planting activities. It's a great way to contribute to environmental sustainability.",
+                    imagePath: "images/pic06.jpg" // Placeholder image
+                },
+                {
+                    name: "Community Food Bank Volunteer",
+                    description: "Volunteer at the local community food bank to help distribute food to families in need.",
+                    detailedDescription: "The community food bank provides essential food supplies to individuals and families facing hardship. Volunteers are needed to help sort and organize donations, pack food hampers, and assist with client registration and distribution. This role is crucial in ensuring that everyone has access to nutritious food.",
+                    imagePath: "images/pic07.jpg" // Placeholder image
+                }
+            ];
+
+            document.addEventListener('DOMContentLoaded', () => {
+                const articlesContainer = document.getElementById('articles-container');
+                const popup = document.getElementById('popup');
+                const popupContent = document.getElementById('popup-content');
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const nav = document.getElementById('nav');
+
+                // Populate opportunities
+                opportunities.forEach(opportunity => {
+                    const article = document.createElement('article');
+                    // Changed the img tag to use the .image class as per main.css structure
+                    article.innerHTML = `
+                        <a href="#" class="image fit"><img src="${opportunity.imagePath}" alt="${opportunity.name}" /></a>
+                        <h3 class="major">${opportunity.name}</h3>
+                        <p>${opportunity.description}</p>
+                        <a href="#" class="special" data-opportunity-name="${opportunity.name}">Learn more</a>
+                    `;
+                    articlesContainer.appendChild(article);
+                });
+
+                // Popup functionality
+                articlesContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('special')) {
+                        event.preventDefault();
+                        const opportunityName = event.target.dataset.opportunityName;
+                        const opportunity = opportunities.find(o => o.name === opportunityName);
+
+                        if (opportunity) {
+                            popupContent.innerHTML = `
+                                <h2>${opportunity.name}</h2>
+                                <img src="${opportunity.imagePath}" alt="${opportunity.name} logo" />
+                                <p>${opportunity.detailedDescription}</p>
+                                <div class='close'>Close</div>
+                            `;
+                            popup.classList.add('active');
+
+                            popupContent.querySelector('.close').addEventListener('click', () => {
+                                popup.classList.remove('active');
+                            });
+                        }
                     }
-                }
+                });
+
+                popup.addEventListener('click', (event) => {
+                    if (event.target === popup) {
+                        popup.classList.remove('active');
+                    }
+                });
+
+                // Mobile menu toggle
+                mobileMenuToggle.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    // Assuming your mobile menu is controlled by adding/removing 'active' class on #nav
+                    nav.classList.toggle('active');
+                });
             });
-
-            // Close popup when clicking outside the content
-            popup.addEventListener('click', (event) => {
-                if (event.target === popup) {
-                    popup.classList.remove('active');
-                }
-            });
-
-            // Mobile menu toggle
-            mobileMenuToggle.addEventListener('click', (event) => {
-                event.preventDefault();
-                nav.classList.toggle('active');
-            });
-        });
-    </script>
-
-</body>
-</html>
-
+        </script>
+    </body>
+    </html>
+    
