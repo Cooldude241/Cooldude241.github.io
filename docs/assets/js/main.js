@@ -132,7 +132,6 @@
 							<li><a href="opportunities.html">Opportunities</a></li>
 							<li><a href="elements.html">Elements</a></li>
 						</ul>
-						<a href="#" class="close">X</a>
 					</div>
 				</nav>
 			`;
