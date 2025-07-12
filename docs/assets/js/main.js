@@ -103,7 +103,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
 							<li><a href="opportunities.html">Opportunities</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							
 						</ul>
 					</nav>
 				`;
@@ -130,7 +130,7 @@
 							<li><a href="index.html">Home</a></li>
 							<li><a href="aboutus.html">About Us</a></li>
 							<li><a href="opportunities.html">Opportunities</a></li>
-							<li><a href="elements.html">Elements</a></li>
+							
 						</ul>
 					</div>
 				</nav>

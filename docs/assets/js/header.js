@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li><a href="index.html">Home</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="opportunities.html">Opportunities</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    
                 </ul>
             </nav>
             
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <li><a href="index.html">Home</a></li>
                     <li><a href="aboutus.html">About Us</a></li>
                     <li><a href="opportunities.html">Opportunities</a></li>
-                    <li><a href="elements.html">Elements</a></li>
+                    
                 </ul>
                 <a href="#" class="close">Close</a>
             </div>
