@@ -129,13 +129,16 @@
 			
 			.popup-title {
 				font-size: 1.5rem;
-				bottom: 20px;
-				left: 20px;
-				right: 20px;
+				padding: 15px 20px 10px 20px;
 			}
 			
 			.popup-body {
-				padding: 20px;
+				padding: 0 20px 20px 20px;
+				font-size: 1.1rem;
+			}
+			
+			.popup-header {
+				height: 250px;
 			}
 			
 			.popup-header {
@@ -281,10 +284,10 @@
 
 						// Populate the popup content dynamically
 						popupContent.innerHTML = `
+							<h2 class="popup-title">${organizationName}</h2>
 							<div class="popup-header">
 								<img src="${organizationImage}" alt="${organizationName}" />
 							</div>
-							<h2 class="popup-title">${organizationName}</h2>
 							<div class="popup-body">
 								<p>${detailedDescription}</p>
 							</div>
