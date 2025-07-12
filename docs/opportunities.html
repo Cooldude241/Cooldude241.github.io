@@ -1,130 +1,186 @@
 <!DOCTYPE HTML>
+
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+
 <html>
+
 <head>
-    <title>CauseCircuit - Volunteer Opportunities</title>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript>
-        <link rel="stylesheet" href="assets/css/noscript.css" />
-    </noscript>
+	<title>CauseCircuit - Opportunities</title>
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 </head>
+
 <body class="is-preload">
-    <div class="popup" id="popup">
-        <div class="popup-content" id="popup-content"></div>
-    </div>
-    <!-- Page Wrapper -->
-    <div id="page-wrapper">
-        <!-- Header -->
-        <header id="header" class="alt">
-            <h1><a href="index.html">CauseCircuit</a></h1>
-            <nav id="nav">
-                <ul class="links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="opportunities.html">Opportunities</a></li>
-                    <li><a href="elements.html">Elements</a></li>
-                </ul>
-            </nav>
-            <a href="#mobile-menu" id="mobile-menu-toggle">
-                <span class="icon">&#9776;</span> <!-- Hamburger icon -->
-            </a>
-        </header>
-        <!-- Wrapper -->
-        <section id="wrapper" class="alt style1">
-            <div class="inner">
-                <h2 class="major">Volunteer Opportunities</h2>
-                <p>Browse through the available volunteer opportunities below.</p>
-                <div class="row">
-                    <div id="articles-container" class="features"> <!-- Articles will be dynamically loaded here -->
-                        <!-- Placeholder for JavaScript articles -->
-                    </div>
-                </div>
-                <ul class="actions special">
-                    <li><a href="#" class="button">Load More Opportunities</a></li>
-                </ul>
-            </div>
-        </section>
-    </div>
-    <!-- Scripts -->
-    <script>
-        const opportunities = [
-            {
-                name: "Feed The Needy in Durham",
-                description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
-                detailedDescription: "Feed the Need in Durham is committed to providing fresh, nutritious food to those experiencing food insecurity. They partner with local farms, grocery stores, and community organizations to collect and distribute food. Volunteers are essential for sorting donations, packing hampers, and assisting with distribution events.",
-                imagePath: "https://placehold.co/600x400/FFDDC1/EAEAEA?text=FeedTheNeedy"
-            },
-            {
-                name: "Durham Children's Aid Foundation",
-                description: "The Durham Children's Aid Foundation supports children, youth, and families in need within the Durham Region.",
-                detailedDescription: "The Durham Children's Aid Foundation offers various programs and services, including bursaries for post-secondary education, recreational activities for children, and emergency assistance for families. Volunteers can assist with fundraising events, tutoring, or mentoring programs.",
-                imagePath: "https://placehold.co/600x400/C1FFDD/EAEAEA?text=Children's+Aid"
-            },
-            {
-                name: "Environmental Cleanup Initiative",
-                description: "Join our local initiative to clean up parks and natural areas in Durham.",
-                detailedDescription: "This initiative focuses on preserving the natural beauty of Durham by organizing regular cleanup events in parks, conservation areas, and along riverbanks. Volunteers help collect litter, remove invasive species, and participate in tree planting activities. It's a great way to contribute to environmental sustainability.",
-                imagePath: "https://placehold.co/600x400/DDC1FF/EAEAEA?text=Cleanup"
-            },
-            {
-                name: "Community Food Bank Volunteer",
-                description: "Volunteer at the local community food bank to help distribute food to families in need.",
-                detailedDescription: "The community food bank provides essential food supplies to individuals and families facing hardship. Volunteers are needed to help sort and organize donations, pack food hampers, and assist with client registration and distribution. This role is crucial in ensuring that everyone has access to nutritious food.",
-                imagePath: "https://placehold.co/600x400/FFC1DD/EAEAEA?text=Food+Bank"
-            }
-        ];
-        document.addEventListener('DOMContentLoaded', () => {
-            const articlesContainer = document.getElementById('articles-container');
-            const popup = document.getElementById('popup');
-            const popupContent = document.getElementById('popup-content');
-            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-            const nav = document.getElementById('nav');
-            // Populate opportunities
-            opportunities.forEach(opportunity => {
-                const article = document.createElement('article');
-                article.classList.add('col-4'); // Assuming a class exists for appropriate column widths
-                article.innerHTML = `
-                    <a href="#" class="image fit"><img src="${opportunity.imagePath}" alt="${opportunity.name}" /></a>
-                    <h3 class="major">${opportunity.name}</h3>
-                    <p>${opportunity.description}</p>
-                    <a href="#" class="special" data-opportunity-name="${opportunity.name}">Learn more</a>
-                `;
-                articlesContainer.appendChild(article);
-            });
-            // Popup functionality
-            articlesContainer.addEventListener('click', (event) => {
-                if (event.target.classList.contains('special')) {
-                    event.preventDefault();
-                    const opportunityName = event.target.dataset.opportunityName;
-                    const opportunity = opportunities.find(o => o.name === opportunityName);
-                    if (opportunity) {
-                        popupContent.innerHTML = `
-                            <h2>${opportunity.name}</h2>
-                            <img src="${opportunity.imagePath}" alt="${opportunity.name} logo" />
-                            <p>${opportunity.detailedDescription}</p>
-                            <div class="close">&times;</div> <!-- Close button -->
-                        `;
-                        popup.classList.add('active');
-                        popupContent.querySelector('.close').addEventListener('click', () => {
-                            popup.classList.remove('active');
-                        });
-                    }
-                }
-            });
-            // Close popup when clicking outside the content
-            popup.addEventListener('click', (event) => {
-                if (event.target === popup) {
-                    popup.classList.remove('active');
-                }
-            });
-            // Mobile menu toggle
-            mobileMenuToggle.addEventListener('click', (event) => {
-                event.preventDefault();
-                nav.classList.toggle('active');
-            });
-        });
-    </script>
+
+	<div class="popup" id="popup">
+		<div class="popup-content" id="popup-content"></div>
+	</div>
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1><a href="index.html">CauseCircuit</a></h1>
+			<!-- Desktop Navigation -->
+			<nav id="nav">
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="aboutus.html">About Us</a></li>
+					<li><a href="opportunities.html">Opportunities</a></li>
+					<li><a href="elements.html">Elements</a></li>
+				</ul>
+			</nav>
+			<!-- Mobile Menu Toggle -->
+			<a href="#mobile-menu" id="mobile-menu-toggle">
+				<span class="icon fa-bars"></span>
+			</a>
+		</header>
+
+		<!-- Main Content -->
+		<section id="wrapper">
+			<section id="opportunities" class="wrapper alt style1">
+				<div class="inner">
+					<h2 class="major">Volunteer Opportunities</h2>
+					<p>Discover meaningful volunteer opportunities in the Durham region. Each organization offers unique ways to make a positive impact in your community.</p>
+					
+					<section class="features" id="opportunities-container">
+						<!-- Articles will be dynamically generated here -->
+					</section>
+				</div>
+			</section>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+	<script>
+		// Array of volunteer opportunities
+		const volunteerOpportunities = [
+			{
+				name: "Feed The Needy in Durham",
+				description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
+				detailedDescription: "Feed the Need in Durham works tirelessly to provide nutritious meals and food assistance to individuals and families facing food insecurity in our community. They operate food banks, community kitchens, and mobile food delivery services to ensure no one goes hungry. Volunteers can help with food sorting, meal preparation, distribution, and administrative tasks. This organization has been serving the Durham region for over 15 years and has distributed millions of meals to those in need.",
+				imagePath: "images/organizationlogo/feedtheneedy.jpg"
+			},
+			{
+				name: "Durham Youth Mentorship",
+				description: "Empowering young people through mentorship programs and educational support initiatives.",
+				detailedDescription: "Durham Youth Mentorship connects caring adults with young people aged 12-18 to provide guidance, support, and encouragement. Our mentors help youth develop life skills, academic success, and personal growth through one-on-one relationships and group activities. We focus on building confidence, fostering leadership skills, and helping young people reach their full potential. Volunteer opportunities include becoming a mentor, tutoring, organizing events, and supporting our summer programs.",
+				imagePath: "images/pic05.jpg"
+			},
+			{
+				name: "Community Garden Alliance",
+				description: "Growing fresh produce and fostering community connections through sustainable gardening practices.",
+				detailedDescription: "The Community Garden Alliance maintains several community gardens throughout Durham, providing fresh produce to local food banks and teaching sustainable gardening practices. We believe in the power of growing food together to strengthen communities and promote environmental stewardship. Volunteers help with planting, weeding, harvesting, and maintaining garden spaces. We also offer educational workshops on composting, organic gardening, and nutrition for community members of all ages.",
+				imagePath: "images/pic06.jpg"
+			},
+			{
+				name: "Senior Support Services",
+				description: "Providing companionship and assistance to elderly community members to enhance their quality of life.",
+				detailedDescription: "Senior Support Services is dedicated to helping elderly residents maintain their independence and social connections. We provide friendly visits, transportation assistance, light housekeeping, and technology support to seniors in our community. Our volunteers make a meaningful difference by offering companionship, helping with errands, and ensuring seniors feel valued and connected. We also organize social events, exercise classes, and educational programs specifically designed for older adults.",
+				imagePath: "images/pic07.jpg"
+			},
+			{
+				name: "Environmental Action Durham",
+				description: "Protecting and preserving our local environment through conservation and education initiatives.",
+				detailedDescription: "Environmental Action Durham is committed to protecting our local ecosystems and promoting sustainable practices throughout the region. We organize tree planting events, creek cleanups, and educational programs about environmental conservation. Our volunteers participate in habitat restoration projects, wildlife monitoring, and community education initiatives. We work closely with local schools, businesses, and government agencies to promote environmental awareness and action.",
+				imagePath: "images/pic01.jpg"
+			},
+			{
+				name: "Literacy Champions",
+				description: "Promoting literacy and education through tutoring and reading programs for all ages.",
+				detailedDescription: "Literacy Champions believes that reading is fundamental to personal and community development. We provide free tutoring services, reading programs, and literacy workshops for children, teens, and adults. Our volunteers work with students of all ages to improve reading skills, homework help, and test preparation. We also operate a book donation program and organize reading events at local libraries and community centers.",
+				imagePath: "images/pic02.jpg"
+			}
+		];
+
+		// Function to generate articles from the array
+		function generateOpportunityArticles() {
+			const container = document.getElementById('opportunities-container');
+			
+			volunteerOpportunities.forEach(opportunity => {
+				const article = document.createElement('article');
+				article.innerHTML = `
+					<img src="${opportunity.imagePath}" alt="${opportunity.name} logo" class="image" />
+					<h3 class="major">${opportunity.name}</h3>
+					<p>${opportunity.description}</p>
+					<a href="#" class="special">Learn more</a>
+				`;
+				container.appendChild(article);
+			});
+		}
+
+		// Generate articles when page loads
+		document.addEventListener('DOMContentLoaded', generateOpportunityArticles);
+
+		// Popup functionality
+		document.addEventListener('DOMContentLoaded', function() {
+			// Get references to the popup elements
+			const popup = document.getElementById('popup');
+			const popupContent = document.getElementById('popup-content');
+
+			// Event delegation for "Learn more" buttons
+			document.addEventListener('click', function(event) {
+				if (event.target.classList.contains('special')) {
+					// Prevent the default link behavior
+					event.preventDefault();
+
+					// Get the parent article element of the clicked button
+					const article = event.target.closest('article');
+					if (article) {
+						// Extract data from the article
+						const organizationName = article.querySelector('h3.major').textContent;
+						const organizationImage = article.querySelector('img').src;
+						
+						// Find the corresponding opportunity in our array for detailed description
+						const opportunity = volunteerOpportunities.find(opp => opp.name === organizationName);
+						const detailedDescription = opportunity ? opportunity.detailedDescription : article.querySelector('p').textContent;
+
+						// Populate the popup content dynamically
+						popupContent.innerHTML = `
+							<h2>${organizationName}</h2>
+							<img src="${organizationImage}" alt="${organizationName} logo" />
+							<p>${detailedDescription}</p>
+							<div class='close'>Close</div>
+						`;
+
+						// Show the popup
+						popup.classList.add('active');
+
+						// Add event listener for the close button inside the popup
+						popupContent.querySelector('.close').addEventListener('click', () => {
+							popup.classList.remove('active');
+						});
+					}
+				}
+			});
+
+			// Event listener to close the popup when clicking outside its content
+			popup.addEventListener('click', (event) => {
+				if (event.target === popup) {
+					popup.classList.remove('active');
+				}
+			});
+		});
+	</script>
+
 </body>
+
 </html>
