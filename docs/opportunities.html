@@ -1,15 +1,13 @@
 <!DOCTYPE HTML>
-
 <!--
 	Solid State by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
-
 <html>
 
 <head>
-	<title>CauseCircuit - Opportunities</title>
+	<title>CauseCircuit</title>
 	<meta charset="utf-8" />
 	<link rel="shortcut icon" type="x-icon" href="images/causecircuit-logo.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -74,7 +72,7 @@
 
 		.popup-title {
 			padding: 30px 30px 20px 30px;
-			color: #ffffff !important;
+			color: #ffffff;
 			font-size: 2.5rem;
 			font-weight: 600;
 			margin: 0;
@@ -90,7 +88,36 @@
 
 		.popup-body p {
 			margin: 0 0 20px 0;
-			color: #ffffff;
+		}
+
+		.popup-info {
+			padding: 0 30px 10px 30px;
+			color: #b0b0b0;
+			font-size: 1rem;
+			border-bottom: 1px solid #404040;
+			margin-bottom: 20px;
+		}
+
+		.popup-info-item {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.popup-info-item strong {
+			color: #4a90e2;
+			margin-right: 8px;
+			min-width: 80px;
+		}
+
+		.popup-info-item a {
+			color: #4a90e2;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.popup-info-item a:hover {
+			color: #357abd;
 		}
 
 		.popup-close {
@@ -137,6 +164,10 @@
 				padding: 0 20px 20px 20px;
 				font-size: 1.1rem;
 			}
+
+			.popup-info {
+				padding: 0 20px 10px 20px;
+			}
 			
 			.popup-header {
 				height: 250px;
@@ -146,118 +177,137 @@
 </head>
 
 <body class="is-preload">
-
 	<div class="popup" id="popup">
-		<div class="popup-content" id="popup-content"></div>
+  		<div class="popup-content" id="popup-content"></div>
 	</div>
-
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
 		<!-- Header -->
 		<header id="header" class="alt">
 			<h1><a href="index.html">CauseCircuit</a></h1>
+
 			<!-- Desktop Navigation -->
 			<nav id="nav">
 				<ul class="links">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="aboutus.html">About Us</a></li>
 					<li><a href="opportunities.html">Opportunities</a></li>
-					<li><a href="elements.html">Elements</a></li>
+					
 				</ul>
 			</nav>
+
 			<!-- Mobile Menu Toggle -->
 			<a href="#mobile-menu" id="mobile-menu-toggle">
 				<span class="icon fa-bars"></span>
 			</a>
 		</header>
 
-		<!-- Main Content -->
-		<section id="wrapper">
-			<section id="opportunities" class="wrapper alt style1">
-				<div class="inner">
-					<h2 class="major">Volunteer Opportunities</h2>
-					<p>Discover meaningful volunteer opportunities in the Durham region. Each organization offers unique ways to make a positive impact in your community.</p>
+				<!-- Menu -->
 					
-					<section class="features" id="opportunities-container">
-						<!-- Articles will be dynamically generated here -->
-					</section>
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<div class="logo">
+					<img src="images/causecircuit-logo.png" alt="CauseCircuit Logo" class="logo-img">
 				</div>
-			</section>
+				<h2>CauseCircuit</h2>
+				<p>Volunteering Made Simple. Opportunities That Matter.</p>
+			</div>
 		</section>
 
-	</div>
+		<!-- Wrapper -->
+		<section id="wrapper">
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+						<!-- One -->
+							<section id="one" class="wrapper spotlight style1">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">About Us</h2>
+										<p>Cause Circuit is a youth driven organization that encourages high school students within the Durham Region to make a positive impact on their communities by getting involved in meaningful volunteer work, assisting in the creation of a compassionate and connected community.</p>
+										<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section>
 
-	<script>
-		// Array of volunteer opportunities
-		const volunteerOpportunities = [
-			{
-				name: "Feed The Needy in Durham",
-				description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
-				detailedDescription: "Feed the Need in Durham works tirelessly to provide nutritious meals and food assistance to individuals and families facing food insecurity in our community. They operate food banks, community kitchens, and mobile food delivery services to ensure no one goes hungry. Volunteers can help with food sorting, meal preparation, distribution, and administrative tasks. This organization has been serving the Durham region for over 15 years and has distributed millions of meals to those in need.",
-				imagePath: "images/organizationlogo/feedtheneedy.jpg"
-			},
-			{
-				name: "Durham Youth Mentorship",
-				description: "Empowering young people through mentorship programs and educational support initiatives.",
-				detailedDescription: "Durham Youth Mentorship connects caring adults with young people aged 12-18 to provide guidance, support, and encouragement. Our mentors help youth develop life skills, academic success, and personal growth through one-on-one relationships and group activities. We focus on building confidence, fostering leadership skills, and helping young people reach their full potential. Volunteer opportunities include becoming a mentor, tutoring, organizing events, and supporting our summer programs.",
-				imagePath: "images/pic05.jpg"
-			},
-			{
-				name: "Community Garden Alliance",
-				description: "Growing fresh produce and fostering community connections through sustainable gardening practices.",
-				detailedDescription: "The Community Garden Alliance maintains several community gardens throughout Durham, providing fresh produce to local food banks and teaching sustainable gardening practices. We believe in the power of growing food together to strengthen communities and promote environmental stewardship. Volunteers help with planting, weeding, harvesting, and maintaining garden spaces. We also offer educational workshops on composting, organic gardening, and nutrition for community members of all ages.",
-				imagePath: "images/pic06.jpg"
-			},
-			{
-				name: "Senior Support Services",
-				description: "Providing companionship and assistance to elderly community members to enhance their quality of life.",
-				detailedDescription: "Senior Support Services is dedicated to helping elderly residents maintain their independence and social connections. We provide friendly visits, transportation assistance, light housekeeping, and technology support to seniors in our community. Our volunteers make a meaningful difference by offering companionship, helping with errands, and ensuring seniors feel valued and connected. We also organize social events, exercise classes, and educational programs specifically designed for older adults.",
-				imagePath: "images/pic07.jpg"
-			},
-			{
-				name: "Environmental Action Durham",
-				description: "Protecting and preserving our local environment through conservation and education initiatives.",
-				detailedDescription: "Environmental Action Durham is committed to protecting our local ecosystems and promoting sustainable practices throughout the region. We organize tree planting events, creek cleanups, and educational programs about environmental conservation. Our volunteers participate in habitat restoration projects, wildlife monitoring, and community education initiatives. We work closely with local schools, businesses, and government agencies to promote environmental awareness and action.",
-				imagePath: "images/pic01.jpg"
-			},
-			{
-				name: "Literacy Champions",
-				description: "Promoting literacy and education through tutoring and reading programs for all ages.",
-				detailedDescription: "Literacy Champions believes that reading is fundamental to personal and community development. We provide free tutoring services, reading programs, and literacy workshops for children, teens, and adults. Our volunteers work with students of all ages to improve reading skills, homework help, and test preparation. We also operate a book donation program and organize reading events at local libraries and community centers.",
-				imagePath: "images/pic02.jpg"
-			}
-		];
+			<!-- Two -->
+			<section id="two" class="wrapper alt spotlight style2">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Social Media</h2>
+						<p>Check out our instagram page for updates and new information!</p>
+						<a href="#" class="special">Learn more</a>
+					</div>
+				</div>
+			</section>
 
-		// Function to generate articles from the array
-		function generateOpportunityArticles() {
-			const container = document.getElementById('opportunities-container');
-			
-			volunteerOpportunities.forEach(opportunity => {
-				const article = document.createElement('article');
-				article.innerHTML = `
-					<img src="${opportunity.imagePath}" alt="${opportunity.name} logo" class="image" />
-					<h3 class="major">${opportunity.name}</h3>
-					<p>${opportunity.description}</p>
-					<a href="#" class="special">Learn more</a>
-				`;
-				container.appendChild(article);
-			});
-		}
+			<!-- Three -->
+			<section id="three" class="wrapper spotlight style3">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Nullam dignissim</h2>
+						<p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet
+							turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla
+							dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
+						<a href="#" class="special">Learn more</a>
+					</div>
+				</div>
+			</section>
 
-		// Generate articles when page loads
-		document.addEventListener('DOMContentLoaded', generateOpportunityArticles);
+						<!-- Four -->
+							<section id="four" class="wrapper alt style1">
+								<div class="inner">
+									<h2 class="major">Volunteer Oppurtunties</h2>
+									<p>Here is a short list of some of the oppurtunities available in the Durham Region, click learn more to check out the full list!</p>
+									<ul class="actions">
+											<li><a href="opportunities.html" class="button">Browse All</a></li>
+										</ul>
+									<section class="features">
+										<article>
+											<img src="images/organizationlogo/feedtheneedy.jpg" alt="" class="image" />
+											<h3 class="major">Feed The Needy in Durham</h3>
+											<p>Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.</p>
+											<a href="#" class="special" data-website="https://www.feedtheneedindurham.org" data-city="Oshawa">Learn more</a>
+											
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
+											<h3 class="major">Durham Youth Mentorship</h3>
+											<p>Empowering young people through mentorship programs and educational support initiatives.</p>
+											<a href="#" class="special" data-website="https://www.durhamyouthmentorship.ca" data-city="Whitby">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+											<h3 class="major">Community Garden Alliance</h3>
+											<p>Growing fresh produce and fostering community connections through sustainable gardening practices.</p>
+											<a href="#" class="special" data-website="https://www.communitygardenalliance.org" data-city="Ajax">Learn more</a>
+										</article>
+										<article>
+											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+											<h3 class="major">Senior Support Services</h3>
+											<p>Providing companionship and assistance to elderly community members to enhance their quality of life.</p>
+											<a href="#" class="special" data-website="https://www.seniorsupportdurham.ca" data-city="Pickering">Learn more</a>
+										</article>
+									</section>
+								</div>
+							</section>
 
-		// Popup functionality
-		document.addEventListener('DOMContentLoaded', function() {
+		</section>
+
+		<!-- Footer -->
+
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
 			// Get references to the popup elements
 			const popup = document.getElementById('popup');
 			const popupContent = document.getElementById('popup-content');
@@ -274,10 +324,9 @@
 						// Extract data from the article
 						const organizationName = article.querySelector('h3.major').textContent;
 						const organizationImage = article.querySelector('img').src;
-						
-						// Find the corresponding opportunity in our array for detailed description
-						const opportunity = volunteerOpportunities.find(opp => opp.name === organizationName);
-						const detailedDescription = opportunity ? opportunity.detailedDescription : article.querySelector('p').textContent;
+						const organizationDescription = article.querySelector('p').textContent;
+						const website = event.target.getAttribute('data-website');
+						const city = event.target.getAttribute('data-city');
 
 						// Populate the popup content dynamically
 						popupContent.innerHTML = `
@@ -285,8 +334,16 @@
 							<div class="popup-header">
 								<img src="${organizationImage}" alt="${organizationName}" />
 							</div>
+							<div class="popup-info">
+								<div class="popup-info-item">
+									<strong>Website:</strong> <a href="${website}" target="_blank">${website}</a>
+								</div>
+								<div class="popup-info-item">
+									<strong>Location:</strong> ${city}
+								</div>
+							</div>
 							<div class="popup-body">
-								<p>${detailedDescription}</p>
+								<p>${organizationDescription}</p>
 							</div>
 							<button class="popup-close"></button>
 						`;
@@ -308,9 +365,7 @@
 					popup.classList.remove('active');
 				}
 			});
-		});
-	</script>
-
+		</script>
 </body>
 
 </html>
