@@ -90,6 +90,36 @@
 			margin: 0 0 20px 0;
 		}
 
+		.popup-info {
+			padding: 0 30px 10px 30px;
+			color: #b0b0b0;
+			font-size: 1rem;
+			border-bottom: 1px solid #404040;
+			margin-bottom: 20px;
+		}
+
+		.popup-info-item {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.popup-info-item strong {
+			color: #4a90e2;
+			margin-right: 8px;
+			min-width: 80px;
+		}
+
+		.popup-info-item a {
+			color: #4a90e2;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.popup-info-item a:hover {
+			color: #357abd;
+		}
+
 		.popup-close {
 			position: static;
 			width: 100%;
@@ -133,6 +163,10 @@
 			.popup-body {
 				padding: 0 20px 20px 20px;
 				font-size: 1.1rem;
+			}
+
+			.popup-info {
+				padding: 0 20px 10px 20px;
 			}
 			
 			.popup-header {
@@ -236,26 +270,26 @@
 											<img src="images/organizationlogo/feedtheneedy.jpg" alt="" class="image" />
 											<h3 class="major">Feed The Needy in Durham</h3>
 											<p>Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.</p>
-											<a href="#" class="special">Learn more</a>
+											<a href="#" class="special" data-website="https://www.feedtheneedindurham.org" data-city="Oshawa">Learn more</a>
 											
 										</article>
 										<article>
 											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-											<h3 class="major">Nisl placerat</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
+											<h3 class="major">Durham Youth Mentorship</h3>
+											<p>Empowering young people through mentorship programs and educational support initiatives.</p>
+											<a href="#" class="special" data-website="https://www.durhamyouthmentorship.ca" data-city="Whitby">Learn more</a>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-											<h3 class="major">Ante fermentum</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
+											<h3 class="major">Community Garden Alliance</h3>
+											<p>Growing fresh produce and fostering community connections through sustainable gardening practices.</p>
+											<a href="#" class="special" data-website="https://www.communitygardenalliance.org" data-city="Ajax">Learn more</a>
 										</article>
 										<article>
 											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<h3 class="major">Fusce consequat</h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing vehicula id nulla dignissim dapibus ultrices.</p>
-											<a href="#" class="special">Learn more</a>
+											<h3 class="major">Senior Support Services</h3>
+											<p>Providing companionship and assistance to elderly community members to enhance their quality of life.</p>
+											<a href="#" class="special" data-website="https://www.seniorsupportdurham.ca" data-city="Pickering">Learn more</a>
 										</article>
 									</section>
 								</div>
@@ -291,12 +325,22 @@
 						const organizationName = article.querySelector('h3.major').textContent;
 						const organizationImage = article.querySelector('img').src;
 						const organizationDescription = article.querySelector('p').textContent;
+						const website = event.target.getAttribute('data-website');
+						const city = event.target.getAttribute('data-city');
 
 						// Populate the popup content dynamically
 						popupContent.innerHTML = `
 							<h2 class="popup-title">${organizationName}</h2>
 							<div class="popup-header">
 								<img src="${organizationImage}" alt="${organizationName}" />
+							</div>
+							<div class="popup-info">
+								<div class="popup-info-item">
+									<strong>Website:</strong> <a href="${website}" target="_blank">${website}</a>
+								</div>
+								<div class="popup-info-item">
+									<strong>Location:</strong> ${city}
+								</div>
 							</div>
 							<div class="popup-body">
 								<p>${organizationDescription}</p>
