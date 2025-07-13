@@ -15,6 +15,131 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<style>
+		/* Modern Popup Styling */
+		.popup {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.8);
+			backdrop-filter: blur(5px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.3s ease;
+			z-index: 1000;
+		}
+
+		.popup.active {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.popup-content {
+			background: #2a2f3a;
+			border-radius: 20px;
+			padding: 0;
+			max-width: 600px;
+			width: 90%;
+			max-height: 80vh;
+			overflow-y: auto;
+			box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+			transform: scale(0.8);
+			transition: transform 0.3s ease;
+			position: relative;
+		}
+
+		.popup.active .popup-content {
+			transform: scale(1);
+		}
+
+		.popup-header {
+			position: relative;
+			border-radius: 20px 20px 0 0;
+			overflow: hidden;
+			height: 300px;
+		}
+
+		.popup-header img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.popup-title {
+			padding: 30px 30px 20px 30px;
+			color: #ffffff;
+			font-size: 2.5rem;
+			font-weight: 600;
+			margin: 0;
+			background: #2a2f3a;
+		}
+
+		.popup-body {
+			padding: 0 30px 30px 30px;
+			color: #e8e8e8;
+			line-height: 1.8;
+			font-size: 1.2rem;
+		}
+
+		.popup-body p {
+			margin: 0 0 20px 0;
+		}
+
+		.popup-close {
+			position: static;
+			width: 100%;
+			height: 50px;
+			background: #4a90e2;
+			border: none;
+			border-radius: 0 0 20px 20px;
+			color: #ffffff;
+			font-size: 16px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all 0.3s ease;
+			margin-top: 10px;
+			font-weight: 500;
+		}
+
+		.popup-close:hover {
+			background: #357abd;
+		}
+
+		.popup-close::before {
+			content: 'Close';
+			font-size: 16px;
+			line-height: 1;
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.popup-content {
+				width: 95%;
+				margin: 20px;
+			}
+			
+			.popup-title {
+				font-size: 1.5rem;
+				padding: 15px 20px 10px 20px;
+			}
+			
+			.popup-body {
+				padding: 0 20px 20px 20px;
+				font-size: 1.1rem;
+			}
+			
+			.popup-header {
+				height: 250px;
+			}
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -149,47 +274,53 @@
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script>
-		  // Get references to the popup elements
-		  const popup = document.getElementById('popup');
-		  const popupContent = document.getElementById('popup-content');
-		  // Get ALL "Learn more" buttons
-		  const learnMoreButtons = document.querySelectorAll('.special');
-		  // Add event listener to each "Learn more" button
-		  learnMoreButtons.forEach(button => {
-		    button.addEventListener('click', (event) => {
-		      // Prevent the default link behavior (e.g., navigating to #)
-		      event.preventDefault();
-		      // Get the parent article element of the clicked button
-		      const article = event.target.closest('article');
-		      if (article) {
-			// Extract data from the article
-			const organizationName = article.querySelector('h3.major').textContent;
-			const organizationImage = article.querySelector('img').src;
-			const organizationDescription = article.querySelector('p').textContent;
-			// Populate the popup content dynamically
-			popupContent.innerHTML = `
-			  <h2>${organizationName}</h2>
-			  <img src="${organizationImage}" alt="${organizationName} logo" />
-			  <p>${organizationDescription}</p>
-			  <div class='close'>Close</div>
-			`;
-			// Show the popup
-			popup.classList.add('active');
-			// Add event listener for the close button inside the popup
-			// This listener is added each time the popup opens because the close button
-			// is dynamically created within popupContent.innerHTML
-			popupContent.querySelector('.close').addEventListener('click', () => {
-			  popup.classList.remove('active');
+			// Get references to the popup elements
+			const popup = document.getElementById('popup');
+			const popupContent = document.getElementById('popup-content');
+
+			// Event delegation for "Learn more" buttons
+			document.addEventListener('click', function(event) {
+				if (event.target.classList.contains('special')) {
+					// Prevent the default link behavior
+					event.preventDefault();
+
+					// Get the parent article element of the clicked button
+					const article = event.target.closest('article');
+					if (article) {
+						// Extract data from the article
+						const organizationName = article.querySelector('h3.major').textContent;
+						const organizationImage = article.querySelector('img').src;
+						const organizationDescription = article.querySelector('p').textContent;
+
+						// Populate the popup content dynamically
+						popupContent.innerHTML = `
+							<h2 class="popup-title">${organizationName}</h2>
+							<div class="popup-header">
+								<img src="${organizationImage}" alt="${organizationName}" />
+							</div>
+							<div class="popup-body">
+								<p>${organizationDescription}</p>
+							</div>
+							<button class="popup-close"></button>
+						`;
+
+						// Show the popup
+						popup.classList.add('active');
+
+						// Add event listener for the close button inside the popup
+						popupContent.querySelector('.popup-close').addEventListener('click', () => {
+							popup.classList.remove('active');
+						});
+					}
+				}
 			});
-		      }
-		    });
-		  });
-		  // Event listener to close the popup when clicking outside its content
-		  popup.addEventListener('click', (event) => {
-		    if (event.target === popup) {
-		      popup.classList.remove('active');
-		    }
-		  });
+
+			// Event listener to close the popup when clicking outside its content
+			popup.addEventListener('click', (event) => {
+				if (event.target === popup) {
+					popup.classList.remove('active');
+				}
+			});
 		</script>
 </body>
 
