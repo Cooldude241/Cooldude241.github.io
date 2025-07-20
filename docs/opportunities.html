@@ -12,7 +12,223 @@
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
 	<style>
-		/* Modern Popup Styling */
+		/* Header Override Styles - Match Homepage */
+		#header {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: 0 !important;
+			width: 100% !important;
+			z-index: 10000 !important;
+			background: rgba(44, 62, 80, 0.95) !important;
+			backdrop-filter: blur(10px) !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: translateY(0) !important;
+			transition: all 0.3s ease !important;
+		}
+
+		#header h1 {
+			display: flex !important;
+			align-items: center !important;
+		}
+
+		#header h1 a {
+			color: white !important;
+			display: flex !important;
+			align-items: center !important;
+		}
+
+		/* Header Logo Styling */
+		.header-logo {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 15px;
+			object-fit: cover;
+		}
+
+		#header #nav ul.links li a {
+			color: white !important;
+		}
+
+		#header #nav ul.links li a:hover {
+			color: white !important;
+		}
+
+		#header #mobile-menu-toggle {
+			color: white !important;
+		}
+
+		body {
+			background: #f8f9fa;
+			font-family: 'Arial', sans-serif;
+			overflow-x: hidden;
+			padding-top: 80px;
+		}
+
+		/* Page Header Section - Match Homepage Style */
+		.page-header {
+			background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+			padding: 120px 0 80px 0;
+			text-align: center;
+			color: white;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.page-header h1 {
+			font-size: 3.5rem;
+			font-weight: 700;
+			margin-bottom: 20px;
+			letter-spacing: -2px;
+		}
+
+		.page-header p {
+			font-size: 1.3rem;
+			opacity: 0.9;
+			line-height: 1.6;
+			max-width: 800px;
+			margin: 0 auto;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		/* Floating particles - Match Homepage */
+		.particle {
+			position: absolute;
+			background: rgba(255, 255, 255, 0.3);
+			border-radius: 50%;
+			animation: float 6s ease-in-out infinite;
+		}
+
+		.particle-1 {
+			top: 20%; 
+			left: 10%; 
+			width: 8px; 
+			height: 8px; 
+			animation-delay: 0s;
+		}
+
+		.particle-2 {
+			top: 60%; 
+			left: 85%; 
+			width: 12px; 
+			height: 12px; 
+			animation-delay: 2s;
+		}
+
+		.particle-3 {
+			top: 80%; 
+			left: 20%; 
+			width: 6px; 
+			height: 6px; 
+			animation-delay: 4s;
+		}
+
+		/* Main Content Section */
+		.content-section {
+			background: #4C5C96;
+			padding: 80px 0;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 50px;
+		}
+
+		/* Opportunities Grid - 5 Tiles Layout */
+		.opportunities-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 30px;
+			margin-top: 40px;
+			transition: all 0.5s ease;
+		}
+
+		.opportunity-card {
+			background: white;
+			border-radius: 20px;
+			overflow: hidden;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+			transition: all 0.4s ease;
+			opacity: 0;
+			transform: translateY(40px);
+			position: relative;
+		}
+
+		.opportunity-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+			transition: left 0.6s ease;
+		}
+
+		.opportunity-card:hover::before {
+			left: 100%;
+		}
+
+		.opportunity-card.animate {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.opportunity-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+		}
+
+		.opportunity-card img {
+			width: 100%;
+			height: 180px;
+			object-fit: cover;
+		}
+
+		.card-content {
+			padding: 25px;
+		}
+
+		.card-content h3 {
+			font-size: 1.3rem;
+			color: #2c3e50;
+			margin-bottom: 12px;
+			font-weight: 600;
+			line-height: 1.3;
+		}
+
+		.card-content p {
+			color: #464c4d;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			font-family: Raleway, Helvetica, sans-serif;
+			font-size: 0.95rem;
+		}
+
+		.card-btn {
+			display: inline-flex;
+			align-items: center;
+			background: #34495e;
+			color: white;
+			padding: 10px 20px;
+			text-decoration: none;
+			border-radius: 25px;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			border: none;
+			font-size: 0.9rem;
+		}
+
+		.card-btn:hover {
+			background: #2c3e50;
+			transform: translateY(-2px);
+		}
+
+		/* Modern Popup Styling - Match Homepage */
 		.popup {
 			position: fixed;
 			top: 0;
@@ -57,7 +273,7 @@
 			position: relative;
 			border-radius: 20px 20px 0 0;
 			overflow: hidden;
-			height: 200px;
+			height: 300px;
 		}
 
 		.popup-header img {
@@ -114,8 +330,46 @@
 			line-height: 1;
 		}
 
+		/* Animations */
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-20px);
+			}
+		}
+
 		/* Responsive Design */
+		@media (max-width: 1200px) {
+			.opportunities-grid {
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 25px;
+			}
+		}
+
 		@media (max-width: 768px) {
+			.page-header h1 {
+				font-size: 2.5rem;
+			}
+
+			.page-header p {
+				font-size: 1.1rem;
+			}
+
+			.container {
+				padding: 0 25px;
+			}
+
+			.opportunities-grid {
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 20px;
+			}
+
+			.content-section {
+				padding: 60px 0;
+			}
+
 			.popup-content {
 				width: 95%;
 				margin: 20px;
@@ -130,20 +384,51 @@
 				padding: 0 20px 20px 20px;
 				font-size: 1.1rem;
 			}
-			
+
 			.popup-header {
-				height: 300px;
+				height: 250px;
 			}
-			
-			.popup-header {
-				height: 150px;
+
+			/* Mobile header logo adjustments */
+			.header-logo {
+				width: 35px;
+				height: 35px;
+				margin-right: 10px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.opportunities-grid {
+				grid-template-columns: 1fr;
+				gap: 20px;
+			}
+
+			.opportunity-card img {
+				height: 160px;
+			}
+
+			.card-content {
+				padding: 20px;
+			}
+
+			.card-content h3 {
+				font-size: 1.2rem;
+			}
+
+			.card-content p {
+				font-size: 0.9rem;
+				margin-bottom: 15px;
+			}
+
+			.card-btn {
+				font-size: 0.85rem;
+				padding: 8px 18px;
 			}
 		}
 	</style>
 </head>
 
 <body class="is-preload">
-
 	<div class="popup" id="popup">
 		<div class="popup-content" id="popup-content"></div>
 	</div>
@@ -152,35 +437,44 @@
 	<div id="page-wrapper">
 
 		<!-- Header -->
-		<header id="header" class="alt">
-			<h1><a href="index.html">CauseCircuit</a></h1>
+		<header id="header">
+			<h1><a href="index.html"><img src="images/causecircuit-logo.png" alt="CauseCircuit Logo" class="header-logo">CauseCircuit</a></h1>
+
 			<!-- Desktop Navigation -->
 			<nav id="nav">
 				<ul class="links">
 					<li><a href="index.html">Home</a></li>
 					<li><a href="aboutus.html">About Us</a></li>
 					<li><a href="opportunities.html">Opportunities</a></li>
-					
 				</ul>
 			</nav>
+
 			<!-- Mobile Menu Toggle -->
 			<a href="#mobile-menu" id="mobile-menu-toggle">
 				<span class="icon fa-bars"></span>
 			</a>
 		</header>
 
+		<!-- Page Header -->
+		<section class="page-header">
+			<div class="container">
+				<h1>Volunteer Opportunities</h1>
+				<p>Discover meaningful volunteer opportunities in the Durham region. Each organization offers unique ways to make a positive impact in your community.</p>
+			</div>
+			<!-- Floating Particles -->
+			<div class="particle particle-1"></div>
+			<div class="particle particle-2"></div>
+			<div class="particle particle-3"></div>
+		</section>
+
 		<!-- Main Content -->
-		<section id="wrapper">
-			<section id="opportunities" class="wrapper alt style1">
-				<div class="inner">
-					<h2 class="major">Volunteer Opportunities</h2>
-					<p>Discover meaningful volunteer opportunities in the Durham region. Each organization offers unique ways to make a positive impact in your community.</p>
-					
-					<section class="features" id="opportunities-container">
-						<!-- Articles will be dynamically generated here -->
-					</section>
+		<section class="content-section">
+			<div class="container">
+				<!-- Opportunities Grid -->
+				<div class="opportunities-grid" id="opportunities-container">
+					<!-- Cards will be dynamically generated here -->
 				</div>
-			</section>
+			</div>
 		</section>
 
 	</div>
@@ -234,47 +528,59 @@
 			}
 		];
 
-		// Function to generate articles from the array
-		function generateOpportunityArticles() {
+		// Function to generate opportunity cards
+		function generateOpportunityCards() {
 			const container = document.getElementById('opportunities-container');
+			container.innerHTML = ''; // Clear existing content
 			
-			volunteerOpportunities.forEach(opportunity => {
-				const article = document.createElement('article');
-				article.innerHTML = `
-					<img src="${opportunity.imagePath}" alt="${opportunity.name} logo" class="image" />
-					<h3 class="major">${opportunity.name}</h3>
-					<p>${opportunity.description}</p>
-					<a href="#" class="special">Learn more</a>
+			volunteerOpportunities.forEach((opportunity, index) => {
+				const card = document.createElement('div');
+				card.className = 'opportunity-card';
+				card.style.transitionDelay = `${index * 0.1}s`;
+				card.innerHTML = `
+					<img src="${opportunity.imagePath}" alt="${opportunity.name}" />
+					<div class="card-content">
+						<h3>${opportunity.name}</h3>
+						<p>${opportunity.description}</p>
+						<button class="card-btn special">Learn more</button>
+					</div>
 				`;
-				container.appendChild(article);
+				container.appendChild(card);
 			});
+
+			// Trigger animations
+			setTimeout(() => {
+				document.querySelectorAll('.opportunity-card').forEach(card => {
+					card.classList.add('animate');
+				});
+			}, 100);
 		}
 
-		// Generate articles when page loads
-		document.addEventListener('DOMContentLoaded', generateOpportunityArticles);
-
-		// Popup functionality
+		// Initialize page
 		document.addEventListener('DOMContentLoaded', function() {
-			// Get references to the popup elements
+			// Generate initial cards
+			generateOpportunityCards();
+
+			// Popup functionality
 			const popup = document.getElementById('popup');
 			const popupContent = document.getElementById('popup-content');
 
 			// Event delegation for "Learn more" buttons
 			document.addEventListener('click', function(event) {
 				if (event.target.classList.contains('special')) {
-					// Prevent the default link behavior
+					// Prevent the default behavior
 					event.preventDefault();
 
-					// Get the parent article element of the clicked button
-					const article = event.target.closest('article');
-					if (article) {
-						// Extract data from the article
-						const organizationName = article.querySelector('h3.major').textContent;
-						const organizationImage = article.querySelector('img').src;
+					// Get the parent card element of the clicked button
+					const card = event.target.closest('.opportunity-card');
+					if (card) {
+						// Extract data from the card
+						const organizationName = card.querySelector('h3').textContent;
+						const organizationImage = card.querySelector('img').src;
 						
 						// Find the corresponding opportunity in our array for detailed description
 						const opportunity = volunteerOpportunities.find(opp => opp.name === organizationName);
-						const detailedDescription = opportunity ? opportunity.detailedDescription : article.querySelector('p').textContent;
+						const detailedDescription = opportunity ? opportunity.detailedDescription : card.querySelector('p').textContent;
 
 						// Populate the popup content dynamically
 						popupContent.innerHTML = `
@@ -305,6 +611,15 @@
 					popup.classList.remove('active');
 				}
 			});
+		});
+
+		// Smooth parallax effect for page header
+		window.addEventListener('scroll', () => {
+			const scrolled = window.pageYOffset;
+			const pageHeader = document.querySelector('.page-header');
+			if (pageHeader) {
+				pageHeader.style.transform = `translateY(${scrolled * 0.3}px)`;
+			}
 		});
 	</script>
 
