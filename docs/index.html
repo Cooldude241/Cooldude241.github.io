@@ -12,6 +12,424 @@
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
 	<style>
+		/* Header Override Styles */
+		#header {
+			position: fixed !important;
+			top: 0 !important;
+			left: 0 !important;
+			right: 0 !important;
+			width: 100% !important;
+			z-index: 10000 !important;
+			background: rgba(44, 62, 80, 0.95) !important;
+			backdrop-filter: blur(10px) !important;
+			opacity: 1 !important;
+			visibility: visible !important;
+			transform: translateY(0) !important;
+			transition: all 0.3s ease !important;
+		}
+
+		#header h1 {
+			display: flex !important;
+			align-items: center !important;
+		}
+
+		#header h1 a {
+			color: white !important;
+			display: flex !important;
+			align-items: center !important;
+		}
+
+		/* Header Logo Styling */
+		.header-logo {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 15px;
+			object-fit: cover;
+		}
+
+		#header #nav ul.links li a {
+			color: white !important;
+		}
+
+		#header #nav ul.links li a:hover {
+			color: white !important;
+		}
+
+		#header #mobile-menu-toggle {
+			color: white !important;
+		}
+
+		body {
+			background: #f8f9fa;
+			font-family: 'Arial', sans-serif;
+			overflow-x: hidden;
+			padding-top: 80px;
+		}
+
+		/* Hero Section */
+		.hero-section {
+			background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.hero-content {
+			color: white;
+			max-width: 800px;
+			padding: 0 20px;
+			animation: fadeInUp 1.5s ease-out;
+		}
+
+		/* Hero Logo Styling */
+		.logo {
+			margin-bottom: 40px;
+		}
+
+		.logo-img {
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+
+		.hero-content h1 {
+			font-size: 4rem;
+			font-weight: 700;
+			margin-bottom: 20px;
+			letter-spacing: -2px;
+		}
+
+		.hero-content p {
+			font-size: 1.4rem;
+			margin-bottom: 30px;
+			opacity: 0.9;
+			line-height: 1.6;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		/* Floating particles */
+		.particle {
+			position: absolute;
+			background: rgba(255, 255, 255, 0.3);
+			border-radius: 50%;
+			animation: float 6s ease-in-out infinite;
+		}
+
+		.particle-1 {
+			top: 20%; 
+			left: 10%; 
+			width: 8px; 
+			height: 8px; 
+			animation-delay: 0s;
+		}
+
+		.particle-2 {
+			top: 60%; 
+			left: 85%; 
+			width: 12px; 
+			height: 12px; 
+			animation-delay: 2s;
+		}
+
+		.particle-3 {
+			top: 80%; 
+			left: 20%; 
+			width: 6px; 
+			height: 6px; 
+			animation-delay: 4s;
+		}
+
+		.particle-4 {
+			top: 30%; 
+			left: 75%; 
+			width: 10px; 
+			height: 10px; 
+			animation-delay: 1s;
+		}
+
+		.particle-5 {
+			top: 70%; 
+			left: 60%; 
+			width: 8px; 
+			height: 8px; 
+			animation-delay: 3s;
+		}
+
+		/* Content Sections */
+		.content-section {
+			padding: 100px 0;
+			position: relative;
+		}
+
+		.section-blue {
+			background: #4C5C96;
+		}
+
+		.section-alt {
+			background: #45558D;
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 0 50px;
+		}
+
+		.section-header {
+			text-align: center;
+			margin-bottom: 80px;
+			opacity: 0;
+			transform: translateY(30px);
+			transition: all 0.8s ease;
+		}
+
+		.section-header.animate {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.section-header h2 {
+			font-size: 3rem;
+			color: #f8f9fa;
+			margin-bottom: 20px;
+			font-weight: 600;
+			position: relative;
+		}
+
+		.section-header h2::after {
+			content: '';
+			position: absolute;
+			bottom: -10px;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 80px;
+			height: 4px;
+			background: white;
+			border-radius: 2px;
+		}
+
+		.section-header p {
+			font-size: 1.2rem;
+			color: #f8f9fa;
+			line-height: 1.8;
+			max-width: 600px;
+			margin: 0 auto;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		/* About Section Grid */
+		.about-grid {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			gap: 60px;
+			align-items: center;
+			margin-top: 60px;
+		}
+
+		.about-image {
+			position: relative;
+			border-radius: 20px;
+			overflow: hidden;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+		}
+
+		.about-image img {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
+
+		.about-content {
+			color: #f8f9fa;
+		}
+
+		.about-content h3 {
+			font-size: 2rem;
+			margin-bottom: 25px;
+			color: white;
+			font-weight: 600;
+		}
+
+		.about-content p {
+			font-size: 1.1rem;
+			line-height: 1.8;
+			margin-bottom: 30px;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		.learn-more-btn {
+			display: inline-flex;
+			align-items: center;
+			background: white;
+			color: #2c3e50;
+			padding: 15px 30px;
+			text-decoration: none;
+			border-radius: 30px;
+			font-weight: 600;
+			transition: all 0.3s ease;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+		}
+
+		.learn-more-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+			background: #f8f9fa;
+		}
+
+		/* Social Media Section */
+		.social-grid {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 60px;
+			align-items: center;
+			margin-top: 60px;
+		}
+
+		.social-content {
+			color: #f8f9fa;
+		}
+
+		.social-content h3 {
+			font-size: 2rem;
+			margin-bottom: 25px;
+			color: white;
+			font-weight: 600;
+		}
+
+		.social-content p {
+			font-size: 1.1rem;
+			line-height: 1.8;
+			margin-bottom: 30px;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		.social-image {
+			position: relative;
+			border-radius: 20px;
+			overflow: hidden;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+		}
+
+		.social-image img {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
+
+		/* Opportunities Grid */
+		.opportunities-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 40px;
+			margin-top: 60px;
+		}
+
+		.opportunity-card {
+			background: white;
+			border-radius: 20px;
+			overflow: hidden;
+			box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+			transition: all 0.4s ease;
+			opacity: 0;
+			transform: translateY(40px);
+			position: relative;
+		}
+
+		.opportunity-card::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+			transition: left 0.6s ease;
+		}
+
+		.opportunity-card:hover::before {
+			left: 100%;
+		}
+
+		.opportunity-card.animate {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.opportunity-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+		}
+
+		.opportunity-card img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+		.card-content {
+			padding: 30px;
+		}
+
+		.card-content h3 {
+			font-size: 1.5rem;
+			color: #2c3e50;
+			margin-bottom: 15px;
+			font-weight: 600;
+		}
+
+		.card-content p {
+			color: #464c4d;
+			line-height: 1.6;
+			margin-bottom: 25px;
+			font-family: Raleway, Helvetica, sans-serif;
+		}
+
+		.card-btn {
+			display: inline-flex;
+			align-items: center;
+			background: #34495e;
+			color: white;
+			padding: 12px 25px;
+			text-decoration: none;
+			border-radius: 25px;
+			font-weight: 500;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			border: none;
+		}
+
+		.card-btn:hover {
+			background: #2c3e50;
+			transform: translateY(-2px);
+		}
+
+		.browse-all-btn {
+			display: inline-flex;
+			align-items: center;
+			background: white;
+			color: #2c3e50;
+			padding: 15px 40px;
+			text-decoration: none;
+			border-radius: 30px;
+			font-weight: 600;
+			font-size: 1.1rem;
+			transition: all 0.3s ease;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+			margin-bottom: 40px;
+		}
+
+		.browse-all-btn:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+			background: #f8f9fa;
+		}
+
 		/* Modern Popup Styling */
 		.popup {
 			position: fixed;
@@ -144,8 +562,60 @@
 			line-height: 1;
 		}
 
+		/* Animations */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(40px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0px);
+			}
+			50% {
+				transform: translateY(-20px);
+			}
+		}
+
 		/* Responsive Design */
 		@media (max-width: 768px) {
+			.hero-content h1 {
+				font-size: 2.5rem;
+			}
+
+			.hero-content p {
+				font-size: 1.1rem;
+			}
+
+			.container {
+				padding: 0 25px;
+			}
+
+			.section-header h2 {
+				font-size: 2rem;
+			}
+
+			.about-grid,
+			.social-grid {
+				grid-template-columns: 1fr;
+				gap: 30px;
+			}
+
+			.opportunities-grid {
+				grid-template-columns: 1fr;
+				gap: 30px;
+			}
+
+			.content-section {
+				padding: 60px 0;
+			}
+
 			.popup-content {
 				width: 95%;
 				margin: 20px;
@@ -168,6 +638,13 @@
 			.popup-header {
 				height: 250px;
 			}
+
+			/* Mobile header logo adjustments */
+			.header-logo {
+				width: 35px;
+				height: 35px;
+				margin-right: 10px;
+			}
 		}
 	</style>
 </head>
@@ -176,12 +653,13 @@
 	<div class="popup" id="popup">
   		<div class="popup-content" id="popup-content"></div>
 	</div>
+
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
 		<!-- Header -->
-		<header id="header" class="alt">
-			<h1><a href="index.html">CauseCircuit</a></h1>
+		<header id="header">
+			<h1><a href="index.html"><img src="images/causecircuit-logo.png" alt="CauseCircuit Logo" class="header-logo">CauseCircuit</a></h1>
 
 			<!-- Desktop Navigation -->
 			<nav id="nav">
@@ -189,7 +667,6 @@
 					<li><a href="index.html">Home</a></li>
 					<li><a href="aboutus.html">About Us</a></li>
 					<li><a href="opportunities.html">Opportunities</a></li>
-					
 				</ul>
 			</nav>
 
@@ -199,155 +676,206 @@
 			</a>
 		</header>
 
-				<!-- Menu -->
-					
-		<!-- Banner -->
-		<section id="banner">
-			<div class="inner">
+		<!-- Hero Section -->
+		<section class="hero-section">
+			<div class="hero-content">
 				<div class="logo">
 					<img src="images/causecircuit-logo.png" alt="CauseCircuit Logo" class="logo-img">
 				</div>
-				<h2>CauseCircuit</h2>
+				<h1>CauseCircuit</h1>
 				<p>Volunteering Made Simple. Opportunities That Matter.</p>
+			</div>
+			<!-- Floating Particles -->
+			<div class="particle particle-1"></div>
+			<div class="particle particle-2"></div>
+			<div class="particle particle-3"></div>
+			<div class="particle particle-4"></div>
+			<div class="particle particle-5"></div>
+		</section>
+
+		<!-- About Section -->
+		<section class="content-section section-blue">
+			<div class="container">
+				<div class="about-grid">
+					<div class="about-image">
+						<img src="images/pic01.jpg" alt="About CauseCircuit" />
+					</div>
+					<div class="about-content">
+						<h3>About Us</h3>
+						<p>Cause Circuit is a youth driven organization that encourages high school students within the Durham Region to make a positive impact on their communities by getting involved in meaningful volunteer work, assisting in the creation of a compassionate and connected community.</p>
+						<a href="aboutus.html" class="learn-more-btn">Learn more</a>
+					</div>
+				</div>
 			</div>
 		</section>
 
-		<!-- Wrapper -->
-		<section id="wrapper">
-
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">About Us</h2>
-										<p>Cause Circuit is a youth driven organization that encourages high school students within the Durham Region to make a positive impact on their communities by getting involved in meaningful volunteer work, assisting in the creation of a compassionate and connected community.</p>
-										<a href="#" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
-
-			<!-- Two -->
-			<section id="two" class="wrapper alt spotlight style2">
-				<div class="inner">
-					<a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
-					<div class="content">
-						<h2 class="major">Social Media</h2>
+		<!-- Social Media Section -->
+		<section class="content-section section-alt">
+			<div class="container">
+				<div class="social-grid">
+					<div class="social-content">
+						<h3>Social Media</h3>
 						<p>Check out our instagram page for updates and new information!</p>
-						<a href="#" class="special">Learn more</a>
+						<a href="#" class="learn-more-btn">Learn more</a>
+					</div>
+					<div class="social-image">
+						<img src="images/pic02.jpg" alt="Social Media" />
 					</div>
 				</div>
-			</section>
-
-						<!-- Four -->
-							<section id="four" class="wrapper alt style1">
-								<div class="inner">
-									<h2 class="major">Volunteer Oppurtunties</h2>
-									<p>Here is a short list of some of the oppurtunities available in the Durham Region, click learn more to check out the full list!</p>
-									<ul class="actions">
-											<li><a href="opportunities.html" class="button">Browse All</a></li>
-										</ul>
-									<section class="features">
-										<article>
-											<img src="images/organizationlogo/feedtheneedy.jpg" alt="" class="image" />
-											<h3 class="major">Feed The Needy in Durham</h3>
-											<p>Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.</p>
-											<a href="#" class="special" data-website="https://www.feedtheneedindurham.org" data-city="Oshawa">Learn more</a>
-											
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic05.jpg" alt="" /></a>
-											<h3 class="major">Durham Youth Mentorship</h3>
-											<p>Empowering young people through mentorship programs and educational support initiatives.</p>
-											<a href="#" class="special" data-website="https://www.durhamyouthmentorship.ca" data-city="Whitby">Learn more</a>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
-											<h3 class="major">Community Garden Alliance</h3>
-											<p>Growing fresh produce and fostering community connections through sustainable gardening practices.</p>
-											<a href="#" class="special" data-website="https://www.communitygardenalliance.org" data-city="Ajax">Learn more</a>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-											<h3 class="major">Senior Support Services</h3>
-											<p>Providing companionship and assistance to elderly community members to enhance their quality of life.</p>
-											<a href="#" class="special" data-website="https://www.seniorsupportdurham.ca" data-city="Pickering">Learn more</a>
-										</article>
-									</section>
-								</div>
-							</section>
-
+			</div>
 		</section>
 
-		<!-- Footer -->
+		<!-- Opportunities Section -->
+		<section class="content-section section-blue">
+			<div class="container">
+				<div class="section-header">
+					<h2>Volunteer Opportunities</h2>
+					<p>Here is a short list of some of the opportunities available in the Durham Region, click learn more to check out the full list!</p>
+				</div>
+				<div style="text-align: center;">
+					<a href="opportunities.html" class="browse-all-btn">Browse All Opportunities</a>
+				</div>
+				<div class="opportunities-grid">
+					<div class="opportunity-card">
+						<img src="images/organizationlogo/feedtheneedy.jpg" alt="Feed The Needy in Durham" />
+						<div class="card-content">
+							<h3>Feed The Needy in Durham</h3>
+							<p>Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.</p>
+							<button class="card-btn special" data-website="https://www.feedtheneedindurham.org" data-city="Oshawa">Learn more</button>
+						</div>
+					</div>
+					<div class="opportunity-card">
+						<img src="images/pic05.jpg" alt="Durham Youth Mentorship" />
+						<div class="card-content">
+							<h3>Durham Youth Mentorship</h3>
+							<p>Empowering young people through mentorship programs and educational support initiatives.</p>
+							<button class="card-btn special" data-website="https://www.durhamyouthmentorship.ca" data-city="Whitby">Learn more</button>
+						</div>
+					</div>
+					<div class="opportunity-card">
+						<img src="images/pic06.jpg" alt="Community Garden Alliance" />
+						<div class="card-content">
+							<h3>Community Garden Alliance</h3>
+							<p>Growing fresh produce and fostering community connections through sustainable gardening practices.</p>
+							<button class="card-btn special" data-website="https://www.communitygardenalliance.org" data-city="Ajax">Learn more</button>
+						</div>
+					</div>
+					<div class="opportunity-card">
+						<img src="images/pic07.jpg" alt="Senior Support Services" />
+						<div class="card-content">
+							<h3>Senior Support Services</h3>
+							<p>Providing companionship and assistance to elderly community members to enhance their quality of life.</p>
+							<button class="card-btn special" data-website="https://www.seniorsupportdurham.ca" data-city="Pickering">Learn more</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
+	</div>
 
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrollex.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script>
-			// Get references to the popup elements
-			const popup = document.getElementById('popup');
-			const popupContent = document.getElementById('popup-content');
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
 
-			// Event delegation for "Learn more" buttons
-			document.addEventListener('click', function(event) {
-				if (event.target.classList.contains('special')) {
-					// Prevent the default link behavior
-					event.preventDefault();
+	<script>
+		// Intersection Observer for animations
+		const observerOptions = {
+			threshold: 0.1,
+			rootMargin: '0px 0px -50px 0px'
+		};
 
-					// Get the parent article element of the clicked button
-					const article = event.target.closest('article');
-					if (article) {
-						// Extract data from the article
-						const organizationName = article.querySelector('h3.major').textContent;
-						const organizationImage = article.querySelector('img').src;
-						const organizationDescription = article.querySelector('p').textContent;
-						const website = event.target.getAttribute('data-website');
-						const city = event.target.getAttribute('data-city');
-
-						// Populate the popup content dynamically
-						popupContent.innerHTML = `
-							<h2 class="popup-title">${organizationName}</h2>
-							<div class="popup-header">
-								<img src="${organizationImage}" alt="${organizationName}" />
-							</div>
-							<div class="popup-info">
-								<div class="popup-info-item">
-									<strong>Website:</strong> <a href="${website}" target="_blank">${website}</a>
-								</div>
-								<div class="popup-info-item">
-									<strong>Location:</strong> ${city}
-								</div>
-							</div>
-							<div class="popup-body">
-								<p>${organizationDescription}</p>
-							</div>
-							<button class="popup-close"></button>
-						`;
-
-						// Show the popup
-						popup.classList.add('active');
-
-						// Add event listener for the close button inside the popup
-						popupContent.querySelector('.popup-close').addEventListener('click', () => {
-							popup.classList.remove('active');
-						});
-					}
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('animate');
 				}
 			});
+		}, observerOptions);
 
-			// Event listener to close the popup when clicking outside its content
-			popup.addEventListener('click', (event) => {
-				if (event.target === popup) {
-					popup.classList.remove('active');
-				}
+		// Observe elements for animation
+		document.addEventListener('DOMContentLoaded', () => {
+			const elementsToAnimate = document.querySelectorAll('.section-header, .opportunity-card');
+			elementsToAnimate.forEach(el => observer.observe(el));
+
+			// Add staggered animation delays
+			document.querySelectorAll('.opportunity-card').forEach((card, index) => {
+				card.style.transitionDelay = `${index * 0.2}s`;
 			});
-		</script>
+		});
+
+		// Smooth parallax effect for hero section
+		window.addEventListener('scroll', () => {
+			const scrolled = window.pageYOffset;
+			const heroContent = document.querySelector('.hero-content');
+			if (heroContent) {
+				heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+			}
+		});
+
+		// Get references to the popup elements
+		const popup = document.getElementById('popup');
+		const popupContent = document.getElementById('popup-content');
+
+		// Event delegation for "Learn more" buttons
+		document.addEventListener('click', function(event) {
+			if (event.target.classList.contains('special')) {
+				// Prevent the default link behavior
+				event.preventDefault();
+
+				// Get the parent opportunity card element of the clicked button
+				const card = event.target.closest('.opportunity-card');
+				if (card) {
+					// Extract data from the card
+					const organizationName = card.querySelector('h3').textContent;
+					const organizationImage = card.querySelector('img').src;
+					const organizationDescription = card.querySelector('p').textContent;
+					const website = event.target.getAttribute('data-website');
+					const city = event.target.getAttribute('data-city');
+
+					// Populate the popup content dynamically
+					popupContent.innerHTML = `
+						<h2 class="popup-title">${organizationName}</h2>
+						<div class="popup-header">
+							<img src="${organizationImage}" alt="${organizationName}" />
+						</div>
+						<div class="popup-info">
+							<div class="popup-info-item">
+								<strong>Website:</strong> <a href="${website}" target="_blank">${website}</a>
+							</div>
+							<div class="popup-info-item">
+								<strong>Location:</strong> ${city}
+							</div>
+						</div>
+						<div class="popup-body">
+							<p>${organizationDescription}</p>
+						</div>
+						<button class="popup-close"></button>
+					`;
+
+					// Show the popup
+					popup.classList.add('active');
+
+					// Add event listener for the close button inside the popup
+					popupContent.querySelector('.popup-close').addEventListener('click', () => {
+						popup.classList.remove('active');
+					});
+				}
+			}
+		});
+
+		// Event listener to close the popup when clicking outside its content
+		popup.addEventListener('click', (event) => {
+			if (event.target === popup) {
+				popup.classList.remove('active');
+			}
+		});
+	</script>
+
 </body>
 
 </html>
