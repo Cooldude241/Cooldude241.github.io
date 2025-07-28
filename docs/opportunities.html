@@ -302,6 +302,36 @@
 			margin: 0 0 20px 0;
 		}
 
+		.popup-info {
+			padding: 0 30px 10px 30px;
+			color: #b0b0b0;
+			font-size: 1rem;
+			border-bottom: 1px solid #404040;
+			margin-bottom: 20px;
+		}
+
+		.popup-info-item {
+			display: flex;
+			align-items: center;
+			margin-bottom: 10px;
+		}
+
+		.popup-info-item strong {
+			color: #4a90e2;
+			margin-right: 8px;
+			min-width: 80px;
+		}
+
+		.popup-info-item a {
+			color: #4a90e2;
+			text-decoration: none;
+			transition: color 0.3s ease;
+		}
+
+		.popup-info-item a:hover {
+			color: #357abd;
+		}
+
 		.popup-close {
 			position: static;
 			width: 100%;
@@ -383,6 +413,10 @@
 			.popup-body {
 				padding: 0 20px 20px 20px;
 				font-size: 1.1rem;
+			}
+
+			.popup-info {
+				padding: 0 20px 10px 20px;
 			}
 
 			.popup-header {
@@ -488,43 +522,55 @@
 	<script src="assets/js/main.js"></script>
 
 	<script>
-		// Array of volunteer opportunities
+		// Array of volunteer opportunities - Updated with website and location data
 		const volunteerOpportunities = [
 			{
 				name: "Feed The Needy in Durham",
 				description: "Feed the Need in Durham is a non-profit organization dedicated to alleviating hunger in the Durham region.",
 				detailedDescription: "Feed the Need in Durham works tirelessly to provide nutritious meals and food assistance to individuals and families facing food insecurity in our community. They operate food banks, community kitchens, and mobile food delivery services to ensure no one goes hungry. Volunteers can help with food sorting, meal preparation, distribution, and administrative tasks. This organization has been serving the Durham region for over 15 years and has distributed millions of meals to those in need.",
-				imagePath: "images/organizationlogo/feedtheneedy.jpg"
+				imagePath: "images/organizationlogo/feedtheneedy.jpg",
+				website: "https://www.feedtheneedindurham.org",
+				city: "Oshawa"
 			},
 			{
 				name: "Durham Youth Mentorship",
 				description: "Empowering young people through mentorship programs and educational support initiatives.",
 				detailedDescription: "Durham Youth Mentorship connects caring adults with young people aged 12-18 to provide guidance, support, and encouragement. Our mentors help youth develop life skills, academic success, and personal growth through one-on-one relationships and group activities. We focus on building confidence, fostering leadership skills, and helping young people reach their full potential. Volunteer opportunities include becoming a mentor, tutoring, organizing events, and supporting our summer programs.",
-				imagePath: "images/pic05.jpg"
+				imagePath: "images/pic05.jpg",
+				website: "https://www.durhamyouthmentorship.ca",
+				city: "Whitby"
 			},
 			{
 				name: "Community Garden Alliance",
 				description: "Growing fresh produce and fostering community connections through sustainable gardening practices.",
 				detailedDescription: "The Community Garden Alliance maintains several community gardens throughout Durham, providing fresh produce to local food banks and teaching sustainable gardening practices. We believe in the power of growing food together to strengthen communities and promote environmental stewardship. Volunteers help with planting, weeding, harvesting, and maintaining garden spaces. We also offer educational workshops on composting, organic gardening, and nutrition for community members of all ages.",
-				imagePath: "images/pic06.jpg"
+				imagePath: "images/pic06.jpg",
+				website: "https://www.communitygardenalliance.org",
+				city: "Ajax"
 			},
 			{
 				name: "Senior Support Services",
 				description: "Providing companionship and assistance to elderly community members to enhance their quality of life.",
 				detailedDescription: "Senior Support Services is dedicated to helping elderly residents maintain their independence and social connections. We provide friendly visits, transportation assistance, light housekeeping, and technology support to seniors in our community. Our volunteers make a meaningful difference by offering companionship, helping with errands, and ensuring seniors feel valued and connected. We also organize social events, exercise classes, and educational programs specifically designed for older adults.",
-				imagePath: "images/pic07.jpg"
+				imagePath: "images/pic07.jpg",
+				website: "https://www.seniorsupportdurham.ca",
+				city: "Pickering"
 			},
 			{
 				name: "Environmental Action Durham",
 				description: "Protecting and preserving our local environment through conservation and education initiatives.",
 				detailedDescription: "Environmental Action Durham is committed to protecting our local ecosystems and promoting sustainable practices throughout the region. We organize tree planting events, creek cleanups, and educational programs about environmental conservation. Our volunteers participate in habitat restoration projects, wildlife monitoring, and community education initiatives. We work closely with local schools, businesses, and government agencies to promote environmental awareness and action.",
-				imagePath: "images/pic01.jpg"
+				imagePath: "images/pic01.jpg",
+				website: "https://www.environmentalactiondurham.org",
+				city: "Oshawa"
 			},
 			{
 				name: "Literacy Champions",
 				description: "Promoting literacy and education through tutoring and reading programs for all ages.",
 				detailedDescription: "Literacy Champions believes that reading is fundamental to personal and community development. We provide free tutoring services, reading programs, and literacy workshops for children, teens, and adults. Our volunteers work with students of all ages to improve reading skills, homework help, and test preparation. We also operate a book donation program and organize reading events at local libraries and community centers.",
-				imagePath: "images/pic02.jpg"
+				imagePath: "images/pic02.jpg",
+				website: "https://www.literacychampionsdurham.ca",
+				city: "Markham"
 			}
 		];
 
@@ -581,12 +627,22 @@
 						// Find the corresponding opportunity in our array for detailed description
 						const opportunity = volunteerOpportunities.find(opp => opp.name === organizationName);
 						const detailedDescription = opportunity ? opportunity.detailedDescription : card.querySelector('p').textContent;
+						const website = opportunity ? opportunity.website : '#';
+						const city = opportunity ? opportunity.city : 'Durham Region';
 
-						// Populate the popup content dynamically
+						// Populate the popup content dynamically - NOW MATCHES INDEX.HTML FORMAT
 						popupContent.innerHTML = `
 							<h2 class="popup-title">${organizationName}</h2>
 							<div class="popup-header">
 								<img src="${organizationImage}" alt="${organizationName}" />
+							</div>
+							<div class="popup-info">
+								<div class="popup-info-item">
+									<strong>Website:</strong> <a href="${website}" target="_blank">${website}</a>
+								</div>
+								<div class="popup-info-item">
+									<strong>Location:</strong> ${city}
+								</div>
 							</div>
 							<div class="popup-body">
 								<p>${detailedDescription}</p>
